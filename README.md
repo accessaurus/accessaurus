@@ -39,13 +39,13 @@ It’s **multi‑tenant**, **idempotent**, and **secure by design** (no secrets 
 ```mermaid
 flowchart LR
   A[Next.js / CMS] -->|contentHash + signed request| B(API Gateway)
-  B --> C[Auth & Idempotency\n(HMAC/JWT, domain verify, rate limit)]
-  C --> D[Normalize HTML→text\n+ PII redaction]
-  D --> E[Perceptual Hash\n(SimHash/MinHash)]
-  E -->|near-dup| H[Cache (Redis/KV)]
-  E -->|changed| F[LLM Gateway\nStructured Outputs]
-  F --> G[Validators\n(AJV + heuristics + confidence)]
-  G -->|valid| I[(Postgres MT)\n(outputs, usage)]
+  B --> C[Auth & Idempotency]
+  C --> D[Normalize HTML to text]
+  D --> E[Perceptual Hash]
+  E -->|near-dup| H[Cache Redis/KV]
+  E -->|changed| F[LLM Gateway]
+  F --> G[Validators]
+  G -->|valid| I[(Postgres MT)]
   H --> J[Response to caller]
   I --> J
   G -->|low confidence| J
