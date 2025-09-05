@@ -13,6 +13,7 @@ import Image from "next/image";
 import LogoPng from "@/public/logo.png";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,11 +35,17 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
           className={`${inter.variable} antialiased font-sans`}
         >
-          <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
             <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-2" aria-label="Accessaurus home">
                 <Image
@@ -77,6 +84,7 @@ export default function RootLayout({
             </div>
           </header>
           <main>{children}</main>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
