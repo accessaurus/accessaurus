@@ -58,85 +58,74 @@ flowchart LR
 * **Structured Outputs** + **JSON Schema** ensure reliable, typed results.
 * **Confidence gate:** low confidence ⇒ return `null`.
 
-## SDK surface (TypeScript)
+## Installation & Usage
 
-```ts
-// server-only usage
-type BrandRules = {
-  maxTitle?: number;                // default 60
-  tone?: 'neutral'|'friendly'|'formal';
-  bannedWords?: string[];
-};
+```bash
+npm install @accessaurus/react
+# or
+bun add @accessaurus/react
+```
 
-type MetaRequest = {
-  url: string;
-  canonical?: string;
-  h1: string;
-  summary?: string;
-  body?: string;                    // normalized text (HTML stripped)
-  brandRules?: BrandRules;
-};
+### The simplest SDK ever
 
-type MetaResult = {
-  title: string;                    // <= 60 chars
-  description: string;              // 70–160 chars
-  ogTitle: string;                  // <= 70 chars
-  ogDescription: string;            // 70–200 chars
-  twitterCard: 'summary'|'summary_large_image';
-  canonical?: string;
-} | null;
+```tsx
+// app/layout.tsx
+import { Accessaurus } from '@accessaurus/react';
 
-type JsonLdKind = 'Article'|'Product'|'Event'|'FAQPage'|'HowTo';
-
-export interface AccessaurusSDK {
-  meta: {
-    generate(input: MetaRequest): Promise<MetaResult>;
-  };
-  jsonld: {
-    generate(kind: JsonLdKind, content: Record<string, unknown>):
-      Promise<{ kind: JsonLdKind, json: unknown } | null>;
-  };
-  synonyms: {
-    suggest(batch: { logs: any[]; taxonomy?: string[] }): Promise<unknown>;
-  };
+export default function Layout({ children }) {
+  return (
+    <html>
+      <head>
+        {/* That's it. Seriously. */}
+        <Accessaurus />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
 ```
 
-### Next.js integration (server‑first)
+That's all. The `<Accessaurus />` component:
+- ✅ Auto-generates WCAG-compliant meta tags
+- ✅ Creates Schema.org JSON-LD based on your content
+- ✅ Optimizes for screen readers
+- ✅ Structures data for AI comprehension  
+- ✅ Returns `null` if confidence is low (never hallucinates)
 
-```ts
-// app/blog/[slug]/page.tsx
-import type { Metadata } from 'next';
-import { accessaurus } from '@/lib/accessaurus'; // wraps server-only SDK
+### What it generates automatically
 
-export async function generateMetadata(
-  { params }: { params: { slug: string } }
-): Promise<Metadata> {
-  const post = await getPost(params.slug);
-  const body = stripHtml(post.body);
+```html
+<!-- From just <Accessaurus />, you get: -->
 
-  const meta = await accessaurus.meta.generate({
-    url: `https://example.com/blog/${params.slug}`,
-    canonical: `https://example.com/blog/${params.slug}`,
-    h1: post.title,
-    summary: post.excerpt,
-    body,
-    brandRules: { maxTitle: 60, tone: 'neutral', bannedWords: [] }
-  });
+<meta name="description" 
+      content="Clear, screen-reader-friendly description">
+<meta property="og:title" 
+      content="Accessible, social-optimized title">
+<meta property="og:description" 
+      content="Description that works for everyone">
 
-  if (!meta) return {};
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: { canonical: meta.canonical },
-    openGraph: { title: meta.ogTitle, description: meta.ogDescription },
-    twitter: { card: meta.twitterCard as any, title: meta.ogTitle, description: meta.ogDescription }
-  };
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Auto-detected from your content",
+  "accessibilityFeature": ["readingOrder", "ARIA"],
+  "accessibilityHazard": "none"
 }
+</script>
+```
 
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
+### Advanced usage (optional)
+
+```tsx
+// Only if you need custom configuration
+<Accessaurus 
+  config={{
+    tone: 'clear',           // optimized for clarity
+    maxTitle: 60,            // WCAG recommended
+    screenReaderFirst: true  // default
+  }}
+/>
 ```
 
 ## I/O contracts (schemas enforced)
