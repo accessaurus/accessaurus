@@ -9,6 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import "./globals.css";
 
@@ -23,8 +24,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Accessaurus",
-  description: "Modern access management for your SaaS",
+  title: "Accessaurus — Accessible SEO & Structured Data SDK",
+  description:
+    "Drop-in SDK for Next.js that generates accessible titles, meta tags, Schema.org JSON-LD, and on-site search synonyms — server-first, secure, and cost-aware.",
 };
 
 export default function RootLayout({
@@ -40,30 +42,21 @@ export default function RootLayout({
         >
           <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
             <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-md bg-primary" />
-                <span className="text-sm font-semibold tracking-tight">
-                  Accessaurus
-                </span>
+              <Link href="/" className="flex items-center gap-2" aria-label="Accessaurus home">
+                <Image
+                  src="/logo.png"
+                  alt="Accessaurus logo"
+                  width={32}
+                  height={32}
+                  sizes="32px"
+                  className="h-8 w-8"
+                  priority
+                />
+                <span className="text-base font-semibold tracking-tight">Accessaurus</span>
               </Link>
               <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-                <a href="#features" className="hover:text-foreground">
-                  Features
-                </a>
-                <a href="#pricing" className="hover:text-foreground">
-                  Pricing
-                </a>
-                <a href="#faqs" className="hover:text-foreground">
-                  FAQ
-                </a>
-                <a
-                  href="https://docs.example.com"
-                  className="hover:text-foreground"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Docs
-                </a>
+                <a href="#why" className="hover:text-foreground">Why It Matters</a>
+                <a href="#features" className="hover:text-foreground">Features</a>
               </nav>
               <div className="flex items-center gap-2">
                 <SignedOut>

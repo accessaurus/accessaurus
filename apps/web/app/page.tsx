@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, Check, Shield, Lock, ListChecks } from "lucide-react";
+import { ArrowRight, Check, FileText, Code2, Search, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+// (interactive developer/demo components removed per request)
 
 export default function Home() {
   return (
@@ -10,31 +11,26 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 pt-20 pb-24 text-center">
           <div className="mx-auto max-w-max">
             <Badge className="gap-2 bg-primary/10 text-primary border-primary/20">
-              <Shield className="h-3.5 w-3.5" />
-              Enterprise-grade access for everyone
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Easy for people and search
             </Badge>
           </div>
           <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-6xl">
-            Ship access controls your users love
+            Accessible Accessibility
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-muted-foreground text-base sm:text-lg">
-            Accessaurus is the easy way to add roles, policies, SSO and audit
-            logs to your product. Built for modern Next.js apps.
-          </p>
+          <p className="mx-auto mt-5 max-w-2xl text-muted-foreground text-base sm:text-lg">Accessaurus helps your website say what it is, so people and search engines get it at a glance.</p>
           <div className="mt-8 flex items-center justify-center gap-3">
-            <Link href="/app">
+            <a href="#features">
               <Button className="gap-2">
-                Launch app
+                Explore features
                 <ArrowRight className="h-4 w-4" />
               </Button>
-            </Link>
-            <a href="#features">
-              <Button variant="outline">Explore features</Button>
+            </a>
+            <a href="#why">
+              <Button variant="outline">Why it matters</Button>
             </a>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">
-            No credit card required
-          </p>
+          <p className="mt-3 text-xs text-muted-foreground">No credit card required</p>
         </div>
       </section>
 
@@ -55,38 +51,65 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="why" className="py-20">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Why it matters</h2>
+            <p className="mt-3 text-muted-foreground">Clear for people. Easy to find. Less busywork.</p>
+          </div>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[{
+              icon: <FileText className="h-5 w-5" />,
+              title: "Clear & friendly",
+              desc: "Simple words help everyone, including screen readers.",
+            },{
+              icon: <Search className="h-5 w-5" />,
+              title: "Easier to find",
+              desc: "Extra labels help Google understand your pages.",
+            },{
+              icon: <ShieldCheck className="h-5 w-5" />,
+              title: "No guesswork",
+              desc: "If we're not sure, we pause instead of guessing.",
+            }].map((f) => (
+              <div key={f.title} className="rounded-lg border bg-card p-5 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
+                  {f.icon}
+                </div>
+                <h3 className="mt-4 font-medium">{f.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="features" className="py-20">
         <div className="mx-auto max-w-7xl px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Everything you need out of the box
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              Skip months of plumbing. Drop-in building blocks that scale from
-              MVP to enterprise.
-            </p>
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">What it does</h2>
+            <p className="mt-3 text-muted-foreground">Helps explain your pages and keeps things tidy.</p>
           </div>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: <Lock className="h-5 w-5" />,
-                title: "SSO + MFA",
-                desc: "SAML, OAuth, passkeys and magic links included.",
+                icon: <FileText className="h-5 w-5" />,
+                title: "Writes titles & blurbs",
+                desc: "Friendly and the right length.",
               },
               {
-                icon: <ListChecks className="h-5 w-5" />,
-                title: "RBAC & ABAC",
-                desc: "Roles and fine-grained policies with caching.",
+                icon: <Code2 className="h-5 w-5" />,
+                title: "Adds helpful labels",
+                desc: "Tells search what your page is about.",
               },
               {
-                icon: <Shield className="h-5 w-5" />,
-                title: "Audit trails",
-                desc: "Immutable logs, alerts and exports for SOC2.",
+                icon: <Search className="h-5 w-5" />,
+                title: "Synonyms & redirects",
+                desc: "Better words for site search.",
               },
               {
-                icon: <Check className="h-5 w-5" />,
-                title: "SDKs",
-                desc: "Tiny, typed clients for browser and server.",
+                icon: <ShieldCheck className="h-5 w-5" />,
+                title: "Built‑in safety",
+                desc: "If unsure, we stop and ask for more.",
               },
             ].map((f) => (
               <div
@@ -104,109 +127,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="pricing" className="py-20 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Simple, usage-based pricing
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              Start free. Only pay as your users grow.
-            </p>
-          </div>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-xl border bg-card p-6 shadow-sm">
-              <div className="flex items-baseline justify-between">
-                <div>
-                  <h3 className="text-lg font-medium">Starter</h3>
-                  <p className="text-sm text-muted-foreground">
-                    For new products
-                  </p>
-                </div>
-                <div className="text-right">
-                  <span className="text-3xl font-bold">$0</span>
-                  <div className="text-xs text-muted-foreground">
-                    up to 1k MAU
-                  </div>
-                </div>
-              </div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {["Email + OAuth", "Basic roles", "Audit logs (7 days)"].map(
-                  (i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <Check className="h-4 w-4 text-primary" /> {i}
-                    </li>
-                  ),
-                )}
-              </ul>
-              <div className="mt-6">
-                <Link href="/app">
-                  <Button className="w-full">Get started</Button>
-                </Link>
-              </div>
-            </div>
-            <div className="rounded-xl border bg-card p-6 shadow-sm">
-              <div className="flex items-baseline justify-between">
-                <div>
-                  <h3 className="text-lg font-medium">Pro</h3>
-                  <p className="text-sm text-muted-foreground">
-                    For scaling teams
-                  </p>
-                </div>
-                <div className="text-right">
-                  <span className="text-3xl font-bold">$249</span>
-                  <div className="text-xs text-muted-foreground">per month</div>
-                </div>
-              </div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {[
-                  "SAML + SCIM",
-                  "Advanced policies",
-                  "Audit logs (1 year)",
-                ].map((i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-primary" /> {i}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6">
-                <Link href="/app">
-                  <Button className="w-full" variant="secondary">
-                    Talk to sales
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="faqs" className="py-20">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Frequently asked questions
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            Have more questions? Reach out to our team any time.
-          </p>
-          <div className="mt-8 grid gap-6 text-left">
-            <div className="rounded-lg border bg-card p-5">
-              <h3 className="font-medium">How do I integrate?</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Install our SDK and wrap your app. Use our hooks and helpers to
-                gate UI and APIs.
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-5">
-              <h3 className="font-medium">Do you support SAML?</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Yes. Enterprise SSO (SAML) and user provisioning (SCIM) are
-                available on Pro.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {null}
     </div>
   );
 }

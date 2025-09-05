@@ -8,16 +8,12 @@
 
 It’s **multi‑tenant**, **idempotent**, and **secure by design** (no secrets in the browser). When inputs are incomplete or confidence is low, it returns **`null`** instead of guessing.
 
----
-
 ## Why teams use Accessaurus
 
 * **Fewer manual edits:** consistent titles/descriptions and validated JSON‑LD.
 * **Safer automation:** schema‑validated outputs; no hallucinated facts.
 * **Predictable cost:** deduped by content hash + perceptual hashing; cache hits are free.
 * **Simple integration:** one SDK call in `generateMetadata()` (Next.js) or via CMS webhook.
-
----
 
 ## Core capabilities
 
@@ -37,8 +33,6 @@ It’s **multi‑tenant**, **idempotent**, and **secure by design** (no secrets 
 
 **Input:** search logs + taxonomy
 **Output:** curated synonym sets and redirects (e.g., “sneakers” ↔ “trainers”), **gated by review** before activation.
-
----
 
 ## How it works (high‑level)
 
@@ -63,8 +57,6 @@ flowchart LR
 * **Perceptual hashing** (SimHash) skips regeneration for trivial edits.
 * **Structured Outputs** + **JSON Schema** ensure reliable, typed results.
 * **Confidence gate:** low confidence ⇒ return `null`.
-
----
 
 ## SDK surface (TypeScript)
 
@@ -147,8 +139,6 @@ function stripHtml(html: string) {
 }
 ```
 
----
-
 ## I/O contracts (schemas enforced)
 
 ### MetaResult (JSON Schema)
@@ -177,8 +167,6 @@ function stripHtml(html: string) {
 * **HowTo:** `name`, `step[]`
 
 If required fields are missing or confidence is low ⇒ **`null`**.
-
----
 
 ## Request flow (Meta)
 
@@ -219,8 +207,6 @@ sequenceDiagram
   end
 ```
 
----
-
 ## Guardrails & quality
 
 * **Structured outputs**: LLM returns JSON matching our schema (not free text).
@@ -228,8 +214,6 @@ sequenceDiagram
 * **Confidence scoring**: model self‑score × field completeness × heuristic score.
   Threshold configurable per tenant; below threshold → **`null`**.
 * **Perceptual hashing**: SimHash over 3–5‑gram shingles of normalized text; if Hamming distance ≤ **N** (e.g., 3), reuse the previous output.
-
----
 
 ## Security model
 
@@ -241,15 +225,11 @@ sequenceDiagram
 * **PII redaction** in ingestion unless required by JSON‑LD type.
 * **No secrets in the browser.**
 
----
-
 ## Billing & quotas
 
 * **Units billed:** successful, **non‑cached** `MetaResult` or `JSON‑LD` block; synonyms billed per **N** log rows processed + per **approved** synonym set.
 * **Idempotency** dedupes retries; cache hits are **free**.
 * **Usage ledger** records tokens, cost, idempotency key; **soft/hard caps** per tenant.
-
----
 
 ## Observability
 
@@ -257,15 +237,11 @@ sequenceDiagram
 * Tracing: request id + idempotency key across gateway→workers→DB.
 * Audit log: who/what/when for generated outputs; approval events for synonyms/JSON‑LD.
 
----
-
 ## Example prompts (conceptual)
 
 > *System:* “You are Accessaurus. Produce SEO meta compliant with the provided JSON Schema. Use only facts in the input. If required fields are missing or uncertain, return `null`.”
 > *User content:* `{ url, canonical, h1, summary, body, brandRules }`
 > *Response format:* **JSON Schema** (MetaResult)
-
----
 
 ## Example outputs
 
@@ -298,16 +274,12 @@ sequenceDiagram
 }
 ```
 
----
-
 ## Roadmap
 
 * Additional JSON‑LD types (Organization, BreadcrumbList, VideoObject).
 * Localized meta & hreflang sets.
 * PR bot: comments with proposed meta/JSON‑LD diffs during CI.
 * Admin review UI for JSON‑LD & synonym approvals (bulk actions, rationale).
-
----
 
 ## FAQ
 
@@ -322,7 +294,5 @@ sequenceDiagram
 
 **Q: Can we review synonyms before they go live?**
 **A:** Yes. Synonyms are **gated by review**; only approved sets are exported/served.
-
----
 
 > Accessaurus = **server‑first**, **schema‑validated**, **idempotent** automation for meta, JSON‑LD, and synonyms—built to be safe, predictable, and easy to drop into your Next.js/Web stack.
