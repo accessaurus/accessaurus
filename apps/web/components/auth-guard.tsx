@@ -12,7 +12,10 @@ export function AuthGuardModal({ children }: { children: React.ReactNode }) {
     if (!isLoaded) return;
     if (!isSignedIn && !openedRef.current) {
       openedRef.current = true;
-      const redirectUrl = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/app";
+      const redirectUrl =
+        typeof window !== "undefined"
+          ? window.location.pathname + window.location.search
+          : "/app";
       openSignIn({ redirectUrl });
     }
   }, [isLoaded, isSignedIn, openSignIn]);
