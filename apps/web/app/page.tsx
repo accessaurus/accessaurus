@@ -283,8 +283,8 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                  <pre className="text-sm text-gray-100">
-                    <code>
+                  <pre className="text-sm text-gray-100 overflow-x-auto">
+                    <code className="block whitespace-pre">
                       <span className="text-blue-400">import</span> {"{"}{" "}
                       <span className="text-amber-400">Accessaurus</span> {"}"}{" "}
                       <span className="text-blue-400">from</span>{" "}
@@ -350,8 +350,8 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                  <pre className="text-sm text-gray-100">
-                    <code>
+                  <pre className="text-sm text-gray-100 overflow-x-auto">
+                    <code className="block whitespace-pre">
                       <span className="text-gray-400">
                         &lt;!-- Accessaurus automatically detects and generates:
                         --&gt;
