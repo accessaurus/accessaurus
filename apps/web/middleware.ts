@@ -1,7 +1,23 @@
 // middleware.ts
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher(["/app(.*)"]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (!isProtectedRoute(req)) return;
+
+  const url = req.nextUrl;
+
+  // If we already asked for sign-in, serve a public stub via rewrite
+  if (url.searchParams.get("signin") === "1") {
+    const rewriteUrl = new URL("/app/signed-out", url);
+    return NextResponse.rewrite(rewriteUrl);
+  }
+
+  // Enforce auth server-side, but keep users on the same path with a modal
+  await auth.protect({ unauthenticatedUrl: `${url.pathname}?signin=1` });
+});
 
 export const config = {
   matcher: [
@@ -11,4 +27,3 @@ export const config = {
     "/(api|trpc)(.*)",
   ],
 };
-

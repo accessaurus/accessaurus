@@ -1,103 +1,212 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Check, Shield, Lock, ListChecks } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-[calc(100svh-56px)] bg-gradient-to-b from-background to-muted/40">
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 pt-20 pb-24 text-center">
+          <div className="mx-auto max-w-max">
+            <Badge className="gap-2 bg-primary/10 text-primary border-primary/20">
+              <Shield className="h-3.5 w-3.5" />
+              Enterprise-grade access for everyone
+            </Badge>
+          </div>
+          <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-6xl">
+            Ship access controls your users love
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-muted-foreground text-base sm:text-lg">
+            Accessaurus is the easy way to add roles, policies, SSO and audit
+            logs to your product. Built for modern Next.js apps.
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <Link href="/app">
+              <Button className="gap-2">
+                Launch app
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <a href="#features">
+              <Button variant="outline">Explore features</Button>
+            </a>
+          </div>
+          <p className="mt-3 text-xs text-muted-foreground">
+            No credit card required
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <section className="py-6 border-y bg-background/60">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 items-center gap-6 opacity-70">
+            {["Acme", "Globex", "Umbrella", "Hooli", "Initech", "Soylent"].map(
+              (logo) => (
+                <div
+                  key={logo}
+                  className="text-center text-sm font-medium text-muted-foreground"
+                >
+                  {logo}
+                </div>
+              ),
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section id="features" className="py-20">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              Everything you need out of the box
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Skip months of plumbing. Drop-in building blocks that scale from
+              MVP to enterprise.
+            </p>
+          </div>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: <Lock className="h-5 w-5" />,
+                title: "SSO + MFA",
+                desc: "SAML, OAuth, passkeys and magic links included.",
+              },
+              {
+                icon: <ListChecks className="h-5 w-5" />,
+                title: "RBAC & ABAC",
+                desc: "Roles and fine-grained policies with caching.",
+              },
+              {
+                icon: <Shield className="h-5 w-5" />,
+                title: "Audit trails",
+                desc: "Immutable logs, alerts and exports for SOC2.",
+              },
+              {
+                icon: <Check className="h-5 w-5" />,
+                title: "SDKs",
+                desc: "Tiny, typed clients for browser and server.",
+              },
+            ].map((f) => (
+              <div
+                key={f.title}
+                className="rounded-lg border bg-card p-5 text-card-foreground shadow-sm"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
+                  {f.icon}
+                </div>
+                <h3 className="mt-4 font-medium">{f.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="py-20 bg-muted/30">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              Simple, usage-based pricing
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Start free. Only pay as your users grow.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-xl border bg-card p-6 shadow-sm">
+              <div className="flex items-baseline justify-between">
+                <div>
+                  <h3 className="text-lg font-medium">Starter</h3>
+                  <p className="text-sm text-muted-foreground">
+                    For new products
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-3xl font-bold">$0</span>
+                  <div className="text-xs text-muted-foreground">
+                    up to 1k MAU
+                  </div>
+                </div>
+              </div>
+              <ul className="mt-4 space-y-2 text-sm">
+                {["Email + OAuth", "Basic roles", "Audit logs (7 days)"].map(
+                  (i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-primary" /> {i}
+                    </li>
+                  ),
+                )}
+              </ul>
+              <div className="mt-6">
+                <Link href="/app">
+                  <Button className="w-full">Get started</Button>
+                </Link>
+              </div>
+            </div>
+            <div className="rounded-xl border bg-card p-6 shadow-sm">
+              <div className="flex items-baseline justify-between">
+                <div>
+                  <h3 className="text-lg font-medium">Pro</h3>
+                  <p className="text-sm text-muted-foreground">
+                    For scaling teams
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-3xl font-bold">$249</span>
+                  <div className="text-xs text-muted-foreground">per month</div>
+                </div>
+              </div>
+              <ul className="mt-4 space-y-2 text-sm">
+                {[
+                  "SAML + SCIM",
+                  "Advanced policies",
+                  "Audit logs (1 year)",
+                ].map((i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-primary" /> {i}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <Link href="/app">
+                  <Button className="w-full" variant="secondary">
+                    Talk to sales
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faqs" className="py-20">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Frequently asked questions
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Have more questions? Reach out to our team any time.
+          </p>
+          <div className="mt-8 grid gap-6 text-left">
+            <div className="rounded-lg border bg-card p-5">
+              <h3 className="font-medium">How do I integrate?</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Install our SDK and wrap your app. Use our hooks and helpers to
+                gate UI and APIs.
+              </p>
+            </div>
+            <div className="rounded-lg border bg-card p-5">
+              <h3 className="font-medium">Do you support SAML?</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Yes. Enterprise SSO (SAML) and user provisioning (SCIM) are
+                available on Pro.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

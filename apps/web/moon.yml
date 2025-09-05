@@ -1,0 +1,36 @@
+language: typescript
+type: application
+project:
+  name: Web
+  description: Next.js web application
+
+tasks:
+  dev:
+    # Start Next.js in dev with Turbopack
+    command: "./node_modules/.bin/next dev --turbopack"
+    options:
+      envFile: .env.local
+      persistent: true
+      runInCI: false
+
+  build:
+    # Build the Next.js app
+    command: "./node_modules/.bin/next build --turbopack"
+    inputs:
+      - "**/*"
+      - "!node_modules/**"
+      - "!.next/**"
+    outputs:
+      - .next/**
+
+  start:
+    # Start production server (not part of :dev/:build, but handy)
+    command: "./node_modules/.bin/next start"
+
+  lint:
+    # Run Biome checks
+    command: "./node_modules/.bin/biome check"
+
+  format:
+    # Format with Biome
+    command: "./node_modules/.bin/biome format --write"
