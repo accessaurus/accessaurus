@@ -1,0 +1,1 @@
+Always read all the ADRs in the apps/adr directory before coding.
