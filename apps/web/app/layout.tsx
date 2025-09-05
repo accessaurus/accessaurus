@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import {
   ClerkProvider,
   SignInButton,
@@ -12,16 +12,13 @@ import Link from "next/link";
 import Image from "next/image";
 import LogoPng from "@/public/logo.png";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -39,7 +36,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${inter.variable} antialiased font-sans`}
         >
           <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
             <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
@@ -61,6 +58,7 @@ export default function RootLayout({
                 <a href="#features" className="hover:text-foreground">Features</a>
               </nav>
               <div className="flex items-center gap-2">
+                <ThemeToggle />
                 <SignedOut>
                   <SignInButton mode="modal">
                     <Button variant="ghost">Sign in</Button>

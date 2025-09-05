@@ -12,25 +12,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function Home() {
   return (
     <div className="min-h-[calc(100svh-56px)]">
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-blue-500/5 to-background">
+      <section className="relative overflow-hidden bg-gradient-to-b from-background via-primary/5 to-background">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-        <div className="absolute h-full w-full bg-radial-gradient from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute h-full w-full bg-radial-gradient from-primary/10 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-7xl px-4 pt-32 pb-20">
           <div className="text-center">
-            <Badge className="gap-1.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 border-blue-500/20 px-4 py-1.5 mb-8">
+            <Badge className="gap-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border-primary/20 px-4 py-1.5 mb-8">
               <Heart className="h-3.5 w-3.5" />
               Making the Web Accessible for All
             </Badge>
-            <h1 className="text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-transparent text-balance">
+            <h1 className="text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-transparent text-balance py-4">
               A web everyone can navigate.
             </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-muted-foreground text-lg sm:text-xl leading-relaxed">
-              Every page gets clear titles and descriptions that screen readers love. 
-              Every page gets structured data that helps AI understand your content. 
-              <span className="font-semibold text-foreground"> Making the web better for people with disabilities makes it better for everyone.</span>
+            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground text-lg sm:text-xl leading-relaxed">
+              Clearer for people with disabilities. Structured data for AI.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="gap-2 text-base px-8 h-12 shadow-lg hover:shadow-xl transition-shadow bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" className="gap-2 text-base px-8 h-12 shadow-lg hover:shadow-xl transition-shadow">
                 Start Making Impact
                 <Heart className="h-4 w-4" />
               </Button>
@@ -41,15 +39,15 @@ export default function Home() {
             </div>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-primary" />
                 WCAG 2.1 Compliant Output
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-primary" />
                 Screen Reader Optimized
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-primary" />
                 AI-Readable Structure
               </span>
             </div>
@@ -57,14 +55,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 border-y bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20">
+      <section className="py-12 border-y bg-gradient-to-r from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10">
         <div className="mx-auto max-w-7xl px-4">
           <p className="text-center text-sm text-muted-foreground mb-6 font-medium">Partnering with organizations making a difference</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 items-center gap-8">
             {["W3C", "A11y Project", "WebAIM", "NVDA", "JAWS", "Be My Eyes"].map(
               (org) => (
                 <div key={org} className="text-center">
-                  <span className="text-lg font-semibold bg-gradient-to-r from-blue-600/60 to-purple-600/60 bg-clip-text text-transparent">
+                  <span className="text-lg font-semibold bg-gradient-to-r from-primary/70 to-secondary/70 bg-clip-text text-transparent">
                     {org}
                   </span>
                 </div>
@@ -77,7 +75,7 @@ export default function Home() {
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-green-500/10 text-green-700 border-green-500/20">Social Impact</Badge>
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Social Impact</Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">The web should work for everyone</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
               15% of the world lives with disabilities. Most websites are hard to navigate with assistive technology. 
@@ -86,9 +84,9 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-blue-500/20 bg-gradient-to-br from-blue-500/5 to-transparent">
+            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
               <CardHeader>
-                <Eye className="h-8 w-8 text-blue-600 mb-2" />
+                <Eye className="h-8 w-8 text-primary mb-2" />
                 <CardTitle>For Screen Reader Users</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -97,24 +95,24 @@ export default function Home() {
                 </p>
                 <div className="pt-2 space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span className="text-sm">No "Click here" or "Learn more"</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span className="text-sm">Context without visual cues</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span className="text-sm">Logical reading order</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-transparent">
+            <Card className="border-secondary/20 bg-gradient-to-br from-secondary/5 to-transparent">
               <CardHeader>
-                <Bot className="h-8 w-8 text-purple-600 mb-2" />
+                <Bot className="h-8 w-8 text-secondary mb-2" />
                 <CardTitle>For AI & Assistants</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -123,24 +121,24 @@ export default function Home() {
                 </p>
                 <div className="pt-2 space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-purple-600" />
+                    <CheckCircle2 className="h-4 w-4 text-secondary" />
                     <span className="text-sm">Schema.org JSON-LD</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-purple-600" />
+                    <CheckCircle2 className="h-4 w-4 text-secondary" />
                     <span className="text-sm">Semantic HTML markers</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-purple-600" />
+                    <CheckCircle2 className="h-4 w-4 text-secondary" />
                     <span className="text-sm">Clear content hierarchy</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-green-500/20 bg-gradient-to-br from-green-500/5 to-transparent">
+            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
               <CardHeader>
-                <Users className="h-8 w-8 text-green-600 mb-2" />
+                <Users className="h-8 w-8 text-primary mb-2" />
                 <CardTitle>For Everyone Else</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -149,15 +147,15 @@ export default function Home() {
                 </p>
                 <div className="pt-2 space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span className="text-sm">Faster page comprehension</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span className="text-sm">Better search rankings</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span className="text-sm">Clearer user journeys</span>
                   </div>
                 </div>
@@ -184,10 +182,10 @@ export default function Home() {
               <Card key={item.label} className="border-muted">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <span className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                       {item.metric}
                     </span>
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center text-blue-600">
+                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-primary">
                       {item.icon}
                     </div>
                   </div>
@@ -220,7 +218,7 @@ export default function Home() {
                   <pre className="text-sm text-gray-100">
                     <code>
                       <span className="text-blue-400">import</span>{" "}
-                      {"{"} <span className="text-purple-400">Accessaurus</span> {"}"}{" "}
+                      {"{"} <span className="text-amber-400">Accessaurus</span> {"}"}{" "}
                       <span className="text-blue-400">from</span>{" "}
                       <span className="text-green-400">'@accessaurus/react'</span>;{"\n\n"}
                       <span className="text-blue-400">export default function</span>{" "}
@@ -327,9 +325,9 @@ export default function Home() {
                 description: "Built with feedback from users with disabilities and accessibility advocates.",
               },
             ].map((feature) => (
-              <Card key={feature.title} className="border-muted hover:border-blue-500/50 transition-colors">
+              <Card key={feature.title} className="border-muted hover:border-primary/50 transition-colors">
                 <CardHeader>
-                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center text-blue-600 mb-4">
+                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-primary mb-4">
                     {feature.icon}
                   </div>
                   <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -345,11 +343,11 @@ export default function Home() {
 
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4">
-          <Card className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-0">
+          <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-0">
             <CardContent className="p-12">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <Badge className="mb-4 bg-white/80 text-blue-700">Our Mission</Badge>
+                  <Badge className="mb-4 bg-white/80 dark:bg-black/80 text-primary">Our Mission</Badge>
                   <h2 className="text-3xl font-bold mb-4 text-balance">
                     Every person deserves equal access to information
                   </h2>
@@ -360,7 +358,7 @@ export default function Home() {
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <Heart className="h-5 w-5 text-red-500 mt-0.5" />
+                      <Heart className="h-5 w-5 text-destructive mt-0.5" />
                       <div>
                         <p className="font-semibold">Social Impact</p>
                         <p className="text-sm text-muted-foreground">
@@ -369,7 +367,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Globe2 className="h-5 w-5 text-blue-500 mt-0.5" />
+                      <Globe2 className="h-5 w-5 text-primary mt-0.5" />
                       <div>
                         <p className="font-semibold">Future Ready</p>
                         <p className="text-sm text-muted-foreground">
@@ -378,7 +376,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <HandHeart className="h-5 w-5 text-purple-500 mt-0.5" />
+                      <HandHeart className="h-5 w-5 text-secondary mt-0.5" />
                       <div>
                         <p className="font-semibold">Win-Win Solution</p>
                         <p className="text-sm text-muted-foreground">
@@ -408,7 +406,7 @@ export default function Home() {
                       <span className="text-sm">Built by people with disabilities</span>
                     </div>
                   </div>
-                  <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700">
+                  <Button className="w-full mt-6">
                     Start Making Impact
                     <Heart className="ml-2 h-4 w-4" />
                   </Button>
@@ -419,9 +417,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-background">
+      <section className="py-24 bg-gradient-to-b from-primary/5 via-secondary/5 to-background">
         <div className="mx-auto max-w-4xl px-4 text-center">
-          <Badge className="mb-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 border-blue-500/20">
+          <Badge className="mb-4 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border-primary/20">
             Get Started
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 text-balance">
@@ -432,7 +430,7 @@ export default function Home() {
             and preparing for an AI-powered future. It's the right thing to do, and it's good for business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="gap-2 px-8 h-12 text-base shadow-lg bg-blue-600 hover:bg-blue-700">
+            <Button size="lg" className="gap-2 px-8 h-12 text-base shadow-lg">
               Start Your Impact Journey
               <Heart className="h-4 w-4" />
             </Button>
