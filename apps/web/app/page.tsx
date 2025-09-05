@@ -78,7 +78,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-green-500/10 text-green-700 border-green-500/20">Social Impact</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">The web should work for everyone</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">The web should work for everyone</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
               15% of the world lives with disabilities. Most websites are hard to navigate with assistive technology. 
               We're changing that, one page at a time.
@@ -171,7 +171,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4">Our Impact</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Making a measurable difference</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">Making a measurable difference</h2>
             <p className="mt-4 text-lg text-muted-foreground">Every metric represents real people having better web experiences</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -203,7 +203,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4">How It Works</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Simple integration, profound impact</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">Simple integration, profound impact</h2>
             <p className="mt-4 text-lg text-muted-foreground">Add accessibility with just a few lines of code</p>
           </div>
           <div className="grid lg:grid-cols-2 gap-8 items-start">
@@ -216,26 +216,26 @@ export default function Home() {
                 <CardDescription>Just add one component and everything works</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="bg-muted p-4 rounded-lg overflow-x-auto">
-                  <pre className="text-sm">
+                <div className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                  <pre className="text-sm text-gray-100">
                     <code>
-                      <span className="text-blue-600 dark:text-blue-400">import</span>{" "}
-                      {"{"} <span className="text-purple-600 dark:text-purple-400">Accessaurus</span> {"}"}{" "}
-                      <span className="text-blue-600 dark:text-blue-400">from</span>{" "}
-                      <span className="text-green-600 dark:text-green-400">'@accessaurus/react'</span>;{"\n\n"}
-                      <span className="text-blue-600 dark:text-blue-400">export default function</span>{" "}
-                      <span className="text-yellow-600 dark:text-yellow-400">Layout</span>
-                      {"("}<span className="text-orange-600 dark:text-orange-400">{"{ children }"}</span>{")"} {"{\n"}
-                      {"  "}<span className="text-blue-600 dark:text-blue-400">return</span> {"(\n"}
-                      {"    "}<span className="text-red-600 dark:text-red-400">&lt;html&gt;</span>{"\n"}
-                      {"      "}<span className="text-red-600 dark:text-red-400">&lt;head&gt;</span>{"\n"}
-                      {"        "}<span className="text-purple-600 dark:text-purple-400">&lt;Accessaurus /&gt;</span>{" "}
-                      <span className="text-gray-500 dark:text-gray-400">{`{/* ✅ That's it. Seriously. */}`}</span>{"\n"}
-                      {"      "}<span className="text-red-600 dark:text-red-400">&lt;/head&gt;</span>{"\n"}
-                      {"      "}<span className="text-red-600 dark:text-red-400">&lt;body&gt;</span>{"\n"}
-                      {"        "}{"{"}<span className="text-orange-600 dark:text-orange-400">children</span>{"}"}{"\n"}
-                      {"      "}<span className="text-red-600 dark:text-red-400">&lt;/body&gt;</span>{"\n"}
-                      {"    "}<span className="text-red-600 dark:text-red-400">&lt;/html&gt;</span>{"\n"}
+                      <span className="text-blue-400">import</span>{" "}
+                      {"{"} <span className="text-purple-400">Accessaurus</span> {"}"}{" "}
+                      <span className="text-blue-400">from</span>{" "}
+                      <span className="text-green-400">'@accessaurus/react'</span>;{"\n\n"}
+                      <span className="text-blue-400">export default function</span>{" "}
+                      <span className="text-yellow-400">Layout</span>
+                      {"("}<span className="text-orange-400">{"{ children }"}</span>{")"} {"{\n"}
+                      {"  "}<span className="text-blue-400">return</span> {"(\n"}
+                      {"    "}<span className="text-red-400">&lt;html&gt;</span>{"\n"}
+                      {"      "}<span className="text-red-400">&lt;head&gt;</span>{"\n"}
+                      {"        "}<span className="text-purple-400">&lt;Accessaurus /&gt;</span>{" "}
+                      <span className="text-gray-400">{`{/* ✅ That's it. Seriously. */}`}</span>{"\n"}
+                      {"      "}<span className="text-red-400">&lt;/head&gt;</span>{"\n"}
+                      {"      "}<span className="text-red-400">&lt;body&gt;</span>{"\n"}
+                      {"        "}{"{"}<span className="text-orange-400">children</span>{"}"}{"\n"}
+                      {"      "}<span className="text-red-400">&lt;/body&gt;</span>{"\n"}
+                      {"    "}<span className="text-red-400">&lt;/html&gt;</span>{"\n"}
                       {"  );\n"}
                       {"}"};
                     </code>
@@ -253,30 +253,30 @@ export default function Home() {
                 <CardDescription>Automatic detection and generation based on your content</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="bg-muted p-4 rounded-lg overflow-x-auto">
-                  <pre className="text-sm">
+                <div className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                  <pre className="text-sm text-gray-100">
                     <code>
-                      <span className="text-gray-500 dark:text-gray-400">&lt;!-- Accessaurus automatically detects and generates: --&gt;</span>{"\n\n"}
-                      <span className="text-red-600 dark:text-red-400">&lt;meta</span>{" "}
-                      <span className="text-yellow-600 dark:text-yellow-400">name</span>=<span className="text-green-600 dark:text-green-400">"description"</span>{"\n"}
-                      {"      "}<span className="text-yellow-600 dark:text-yellow-400">content</span>=<span className="text-green-600 dark:text-green-400">"Clear, screen-reader-friendly description"</span>
-                      <span className="text-red-600 dark:text-red-400">&gt;</span>{"\n\n"}
-                      <span className="text-red-600 dark:text-red-400">&lt;meta</span>{" "}
-                      <span className="text-yellow-600 dark:text-yellow-400">property</span>=<span className="text-green-600 dark:text-green-400">"og:title"</span>{"\n"}
-                      {"      "}<span className="text-yellow-600 dark:text-yellow-400">content</span>=<span className="text-green-600 dark:text-green-400">"Social-optimized title"</span>
-                      <span className="text-red-600 dark:text-red-400">&gt;</span>{"\n\n"}
-                      <span className="text-red-600 dark:text-red-400">&lt;script</span>{" "}
-                      <span className="text-yellow-600 dark:text-yellow-400">type</span>=<span className="text-green-600 dark:text-green-400">"application/ld+json"</span>
-                      <span className="text-red-600 dark:text-red-400">&gt;</span>{"\n"}
+                      <span className="text-gray-400">&lt;!-- Accessaurus automatically detects and generates: --&gt;</span>{"\n\n"}
+                      <span className="text-red-400">&lt;meta</span>{" "}
+                      <span className="text-yellow-400">name</span>=<span className="text-green-400">"description"</span>{"\n"}
+                      {"      "}<span className="text-yellow-400">content</span>=<span className="text-green-400">"Clear, screen-reader-friendly description"</span>
+                      <span className="text-red-400">&gt;</span>{"\n\n"}
+                      <span className="text-red-400">&lt;meta</span>{" "}
+                      <span className="text-yellow-400">property</span>=<span className="text-green-400">"og:title"</span>{"\n"}
+                      {"      "}<span className="text-yellow-400">content</span>=<span className="text-green-400">"Social-optimized title"</span>
+                      <span className="text-red-400">&gt;</span>{"\n\n"}
+                      <span className="text-red-400">&lt;script</span>{" "}
+                      <span className="text-yellow-400">type</span>=<span className="text-green-400">"application/ld+json"</span>
+                      <span className="text-red-400">&gt;</span>{"\n"}
                       {"{\n"}
-                      {"  "}<span className="text-blue-600 dark:text-blue-400">"@context"</span>: <span className="text-green-600 dark:text-green-400">"https://schema.org"</span>,{"\n"}
-                      {"  "}<span className="text-blue-600 dark:text-blue-400">"@type"</span>: <span className="text-green-600 dark:text-green-400">"Article"</span>,{"\n"}
-                      {"  "}<span className="text-blue-600 dark:text-blue-400">"headline"</span>: <span className="text-green-600 dark:text-green-400">"Auto-detected from your H1"</span>,{"\n"}
-                      {"  "}<span className="text-blue-600 dark:text-blue-400">"accessibilityFeature"</span>: [<span className="text-green-600 dark:text-green-400">"readingOrder"</span>, <span className="text-green-600 dark:text-green-400">"ARIA"</span>],{"\n"}
-                      {"  "}<span className="text-blue-600 dark:text-blue-400">"accessibilityHazard"</span>: <span className="text-green-600 dark:text-green-400">"none"</span>{"\n"}
+                      {"  "}<span className="text-blue-400">"@context"</span>: <span className="text-green-400">"https://schema.org"</span>,{"\n"}
+                      {"  "}<span className="text-blue-400">"@type"</span>: <span className="text-green-400">"Article"</span>,{"\n"}
+                      {"  "}<span className="text-blue-400">"headline"</span>: <span className="text-green-400">"Auto-detected from your H1"</span>,{"\n"}
+                      {"  "}<span className="text-blue-400">"accessibilityFeature"</span>: [<span className="text-green-400">"readingOrder"</span>, <span className="text-green-400">"ARIA"</span>],{"\n"}
+                      {"  "}<span className="text-blue-400">"accessibilityHazard"</span>: <span className="text-green-400">"none"</span>{"\n"}
                       {"}\n"}
-                      <span className="text-red-600 dark:text-red-400">&lt;/script&gt;</span>{"\n\n"}
-                      <span className="text-gray-500 dark:text-gray-400">&lt;!-- All from just &lt;Accessaurus /&gt; --&gt;</span>
+                      <span className="text-red-400">&lt;/script&gt;</span>{"\n\n"}
+                      <span className="text-gray-400">&lt;!-- All from just &lt;Accessaurus /&gt; --&gt;</span>
                     </code>
                   </pre>
                 </div>
@@ -290,7 +290,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4">Features</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Built with accessibility at the core</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">Built with accessibility at the core</h2>
             <p className="mt-4 text-lg text-muted-foreground">Every feature designed to make the web more inclusive</p>
           </div>
           
@@ -350,7 +350,7 @@ export default function Home() {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <Badge className="mb-4 bg-white/80 text-blue-700">Our Mission</Badge>
-                  <h2 className="text-3xl font-bold mb-4">
+                  <h2 className="text-3xl font-bold mb-4 text-balance">
                     Every person deserves equal access to information
                   </h2>
                   <p className="text-muted-foreground mb-6">
@@ -424,7 +424,7 @@ export default function Home() {
           <Badge className="mb-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 border-blue-500/20">
             Get Started
           </Badge>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 text-balance">
             Ready to make the web better for everyone?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
