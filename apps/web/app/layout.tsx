@@ -10,6 +10,7 @@ import {
 } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import LogoPng from "@/public/logo.png";
 import { Button } from "@/components/ui/button";
 import "./globals.css";
 
@@ -24,9 +25,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Accessaurus — Accessible SEO & Structured Data SDK",
+  title: "Accessaurus — Clear for people, clear for bots",
   description:
-    "Drop-in SDK for Next.js that generates accessible titles, meta tags, Schema.org JSON-LD, and on-site search synonyms — server-first, secure, and cost-aware.",
+    "Make pages easier for screen readers and AI bots with clear titles, helpful descriptions, and Schema.org JSON‑LD. Server‑first, safe, and predictable.",
 };
 
 export default function RootLayout({
@@ -44,12 +45,13 @@ export default function RootLayout({
             <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-2" aria-label="Accessaurus home">
                 <Image
-                  src="/logo.png"
+                  src={LogoPng}
                   alt="Accessaurus logo"
-                  width={32}
-                  height={32}
-                  sizes="32px"
-                  className="h-8 w-8"
+                  width={48}
+                  height={48}
+                  sizes="48px"
+                  className="h-12 w-12"
+                  placeholder="blur"
                   priority
                 />
                 <span className="text-base font-semibold tracking-tight">Accessaurus</span>
