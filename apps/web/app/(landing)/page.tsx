@@ -1,31 +1,14 @@
 import {
-  Accessibility,
-  BookOpen,
-  Bot,
-  Brain,
-  CheckCircle2,
-  Eye,
-  Glasses,
-  Globe2,
-  HandHeart,
-  Heart,
-  HeartHandshake,
-  MessageSquare,
-  Mic,
-  Shield,
-  Terminal,
-  UserCheck,
-  Users,
-} from "lucide-react";
+  UserIcon,
+  CheckCircleIcon,
+  EyeIcon,
+  CpuChipIcon,
+  UsersIcon,
+  HeartIcon,
+} from "@heroicons/react/24/outline";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -36,7 +19,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 pt-32 pb-20">
           <div className="text-center">
             <Badge className="gap-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border-primary/20 px-4 py-1.5 mb-8">
-              <Heart className="h-3.5 w-3.5" />
+              <HeartIcon className="h-3.5 w-3.5" />
               Making the Web Accessible for All
             </Badge>
             <h1 className="text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-transparent text-balance py-4">
@@ -51,28 +34,28 @@ export default function Home() {
                 className="gap-2 text-base px-8 h-12 shadow-lg hover:shadow-xl transition-shadow"
               >
                 Start Making Impact
-                <Heart className="h-4 w-4" />
+                <HeartIcon className="h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 className="gap-2 text-base px-8 h-12"
               >
-                <Accessibility className="h-4 w-4" />
+                <UserIcon className="h-4 w-4" />
                 See How It Works
               </Button>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-primary" />
+                <CheckCircleIcon className="h-4 w-4 text-primary" />
                 WCAG 2.1 Compliant Output
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-primary" />
+                <CheckCircleIcon className="h-4 w-4 text-primary" />
                 Screen Reader Optimized
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-primary" />
+                <CheckCircleIcon className="h-4 w-4 text-primary" />
                 AI-Readable Structure
               </span>
             </div>
@@ -123,7 +106,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
               <CardHeader>
-                <Eye className="h-8 w-8 text-primary mb-2" />
+                <EyeIcon className="h-8 w-8 text-primary mb-2" />
                 <CardTitle>For Screen Reader Users</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -133,17 +116,17 @@ export default function Home() {
                 </p>
                 <div className="pt-2 space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <CheckCircleIcon className="h-4 w-4 text-primary" />
                     <span className="text-sm">
                       No "Click here" or "Learn more"
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <CheckCircleIcon className="h-4 w-4 text-primary" />
                     <span className="text-sm">Context without visual cues</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <CheckCircleIcon className="h-4 w-4 text-primary" />
                     <span className="text-sm">Logical reading order</span>
                   </div>
                 </div>
@@ -152,7 +135,7 @@ export default function Home() {
 
             <Card className="border-secondary/20 bg-gradient-to-br from-secondary/5 to-transparent">
               <CardHeader>
-                <Bot className="h-8 w-8 text-secondary mb-2" />
+                <CpuChipIcon className="h-8 w-8 text-secondary mb-2" />
                 <CardTitle>For AI & Assistants</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -162,15 +145,15 @@ export default function Home() {
                 </p>
                 <div className="pt-2 space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-secondary" />
+                    <CheckCircleIcon className="h-4 w-4 text-secondary" />
                     <span className="text-sm">Schema.org JSON-LD</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-secondary" />
+                    <CheckCircleIcon className="h-4 w-4 text-secondary" />
                     <span className="text-sm">Semantic HTML markers</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-secondary" />
+                    <CheckCircleIcon className="h-4 w-4 text-secondary" />
                     <span className="text-sm">Clear content hierarchy</span>
                   </div>
                 </div>
@@ -179,7 +162,7 @@ export default function Home() {
 
             <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
               <CardHeader>
-                <Users className="h-8 w-8 text-primary mb-2" />
+                <UsersIcon className="h-8 w-8 text-primary mb-2" />
                 <CardTitle>For Everyone Else</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -189,239 +172,17 @@ export default function Home() {
                 </p>
                 <div className="pt-2 space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <CheckCircleIcon className="h-4 w-4 text-primary" />
                     <span className="text-sm">Faster page comprehension</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <CheckCircleIcon className="h-4 w-4 text-primary" />
                     <span className="text-sm">Better search rankings</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <CheckCircleIcon className="h-4 w-4 text-primary" />
                     <span className="text-sm">Clearer user journeys</span>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4">Our Impact</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Making a measurable difference
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Every metric represents real people having better web experiences
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                metric: "2.3M+",
-                label: "Pages Made Accessible",
-                icon: <Accessibility className="h-5 w-5" />,
-              },
-              {
-                metric: "89%",
-                label: "Screen Reader Success Rate",
-                icon: <Mic className="h-5 w-5" />,
-              },
-              {
-                metric: "450K",
-                label: "Users with Disabilities Served",
-                icon: <UserCheck className="h-5 w-5" />,
-              },
-              {
-                metric: "100%",
-                label: "WCAG AA Compliance",
-                icon: <Shield className="h-5 w-5" />,
-              },
-            ].map((item) => (
-              <Card key={item.label} className="border-muted">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                      {item.metric}
-                    </span>
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-primary">
-                      {item.icon}
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{item.label}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="demo" className="py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="text-center mb-12">
-            <Badge className="mb-4">How It Works</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Simple integration, profound impact
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Add accessibility with just a few lines of code
-            </p>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            <Card className="bg-background border-muted">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Terminal className="h-5 w-5" />
-                  One Component. Done.
-                </CardTitle>
-                <CardDescription>
-                  Just add one component and everything works
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                  <pre className="text-sm text-gray-100 overflow-x-auto">
-                    <code className="block whitespace-pre">
-                      <span className="text-blue-400">import</span> {"{"}{" "}
-                      <span className="text-amber-400">Accessaurus</span> {"}"}{" "}
-                      <span className="text-blue-400">from</span>{" "}
-                      <span className="text-green-400">
-                        '@accessaurus/react'
-                      </span>
-                      ;{"\n\n"}
-                      <span className="text-blue-400">
-                        export default function
-                      </span>{" "}
-                      <span className="text-yellow-400">Layout</span>
-                      {"("}
-                      <span className="text-orange-400">{"{ children }"}</span>
-                      {")"} {"{\n"}
-                      {"  "}
-                      <span className="text-blue-400">return</span> {"(\n"}
-                      {"    "}
-                      <span className="text-red-400">&lt;html&gt;</span>
-                      {"\n"}
-                      {"      "}
-                      <span className="text-red-400">&lt;head&gt;</span>
-                      {"\n"}
-                      {"        "}
-                      <span className="text-purple-400">
-                        &lt;Accessaurus /&gt;
-                      </span>{" "}
-                      <span className="text-gray-400">{`{/* ✅ That's it. Seriously. */}`}</span>
-                      {"\n"}
-                      {"      "}
-                      <span className="text-red-400">&lt;/head&gt;</span>
-                      {"\n"}
-                      {"      "}
-                      <span className="text-red-400">&lt;body&gt;</span>
-                      {"\n"}
-                      {"        "}
-                      {"{"}
-                      <span className="text-orange-400">children</span>
-                      {"}"}
-                      {"\n"}
-                      {"      "}
-                      <span className="text-red-400">&lt;/body&gt;</span>
-                      {"\n"}
-                      {"    "}
-                      <span className="text-red-400">&lt;/html&gt;</span>
-                      {"\n"}
-                      {"  );\n"}
-                      {"}"}
-                    </code>
-                  </pre>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-background border-muted">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Brain className="h-5 w-5" />
-                  What It Does For You
-                </CardTitle>
-                <CardDescription>
-                  Automatic detection and generation based on your content
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                  <pre className="text-sm text-gray-100 overflow-x-auto">
-                    <code className="block whitespace-pre">
-                      <span className="text-gray-400">
-                        &lt;!-- Accessaurus automatically detects and generates:
-                        --&gt;
-                      </span>
-                      {"\n\n"}
-                      <span className="text-red-400">&lt;meta</span>{" "}
-                      <span className="text-yellow-400">name</span>=
-                      <span className="text-green-400">"description"</span>
-                      {"\n"}
-                      {"      "}
-                      <span className="text-yellow-400">content</span>=
-                      <span className="text-green-400">
-                        "Clear, screen-reader-friendly description"
-                      </span>
-                      <span className="text-red-400">&gt;</span>
-                      {"\n\n"}
-                      <span className="text-red-400">&lt;meta</span>{" "}
-                      <span className="text-yellow-400">property</span>=
-                      <span className="text-green-400">"og:title"</span>
-                      {"\n"}
-                      {"      "}
-                      <span className="text-yellow-400">content</span>=
-                      <span className="text-green-400">
-                        "Social-optimized title"
-                      </span>
-                      <span className="text-red-400">&gt;</span>
-                      {"\n\n"}
-                      <span className="text-red-400">&lt;script</span>{" "}
-                      <span className="text-yellow-400">type</span>=
-                      <span className="text-green-400">
-                        "application/ld+json"
-                      </span>
-                      <span className="text-red-400">&gt;</span>
-                      {"\n"}
-                      {"{\n"}
-                      {"  "}
-                      <span className="text-blue-400">"@context"</span>:{" "}
-                      <span className="text-green-400">
-                        "https://schema.org"
-                      </span>
-                      ,{"\n"}
-                      {"  "}
-                      <span className="text-blue-400">"@type"</span>:{" "}
-                      <span className="text-green-400">"Article"</span>,{"\n"}
-                      {"  "}
-                      <span className="text-blue-400">"headline"</span>:{" "}
-                      <span className="text-green-400">
-                        "Auto-detected from your H1"
-                      </span>
-                      ,{"\n"}
-                      {"  "}
-                      <span className="text-blue-400">
-                        "accessibilityFeature"
-                      </span>
-                      : [<span className="text-green-400">"readingOrder"</span>,{" "}
-                      <span className="text-green-400">"ARIA"</span>],{"\n"}
-                      {"  "}
-                      <span className="text-blue-400">
-                        "accessibilityHazard"
-                      </span>
-                      : <span className="text-green-400">"none"</span>
-                      {"\n"}
-                      {"}\n"}
-                      <span className="text-red-400">&lt;/script&gt;</span>
-                      {"\n\n"}
-                      <span className="text-gray-400">
-                        &lt;!-- All from just &lt;Accessaurus /&gt; --&gt;
-                      </span>
-                    </code>
-                  </pre>
                 </div>
               </CardContent>
             </Card>

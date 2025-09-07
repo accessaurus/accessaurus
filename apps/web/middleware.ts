@@ -7,16 +7,16 @@ const isProtectedRoute = createRouteMatcher(["/app(.*)"]);
 export default clerkMiddleware(async (auth, req) => {
   if (!isProtectedRoute(req)) return;
 
-  const url = req.nextUrl;
+  const url = req.nextUrl.clone();
 
-  // If we already asked for sign-in, serve a public stub via rewrite
-  if (url.searchParams.get("signin") === "1") {
-    const rewriteUrl = new URL("/app/signed-out", url);
-    return NextResponse.rewrite(rewriteUrl);
+  // Protect the route - redirect to sign-in if not authenticated
+  const { userId } = await auth();
+
+  if (!userId) {
+    url.pathname = "/sign-in";
+    url.searchParams.set("redirect_url", req.nextUrl.pathname);
+    return NextResponse.redirect(url);
   }
-
-  // Enforce auth server-side, but keep users on the same path with a modal
-  await auth.protect({ unauthenticatedUrl: `${url.pathname}?signin=1` });
 });
 
 export const config = {
