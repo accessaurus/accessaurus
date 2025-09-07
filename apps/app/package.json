@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3000",
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.31.9",
     "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",

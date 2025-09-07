@@ -10,17 +10,19 @@ import { motion } from 'framer-motion'
 import { Link } from './link'
 import { Logo } from './logo'
 import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { Button } from './button'
+import { getAppUrl } from '@/lib/config'
 
 const links = [
   { href: '/pricing', label: 'Pricing' },
   { href: '/company', label: 'Company' },
   { href: '/blog', label: 'Blog' },
-  { href: '/login', label: 'Login' },
 ]
 
 function DesktopNav() {
   return (
-    <nav className="relative hidden lg:flex">
+    <nav className="relative hidden lg:flex items-center">
       {links.map(({ href, label }) => (
         <PlusGridItem key={href} className="relative flex">
           <Link
@@ -31,6 +33,33 @@ function DesktopNav() {
           </Link>
         </PlusGridItem>
       ))}
+      
+      <SignedOut>
+        <PlusGridItem className="relative flex">
+          <Link
+            href="/sign-in"
+            className="flex items-center px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply data-hover:bg-black/2.5"
+          >
+            Sign In
+          </Link>
+        </PlusGridItem>
+        <PlusGridItem className="relative flex ml-2">
+          <Button href="/sign-up" className="!py-2">
+            Get Started
+          </Button>
+        </PlusGridItem>
+      </SignedOut>
+      
+      <SignedIn>
+        <PlusGridItem className="relative flex ml-2">
+          <Button href={getAppUrl()} className="!py-2 mr-3">
+            Dashboard
+          </Button>
+        </PlusGridItem>
+        <PlusGridItem className="relative flex items-center">
+          <UserButton afterSignOutUrl="/" />
+        </PlusGridItem>
+      </SignedIn>
     </nav>
   )
 }
@@ -66,6 +95,55 @@ function MobileNav() {
             </Link>
           </motion.div>
         ))}
+        
+        <SignedOut>
+          <motion.div
+            initial={{ opacity: 0, rotateX: -90 }}
+            animate={{ opacity: 1, rotateX: 0 }}
+            transition={{
+              duration: 0.15,
+              ease: 'easeInOut',
+              rotateX: { duration: 0.3, delay: links.length * 0.1 },
+            }}
+          >
+            <Link href="/sign-in" className="text-base font-medium text-gray-950">
+              Sign In
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, rotateX: -90 }}
+            animate={{ opacity: 1, rotateX: 0 }}
+            transition={{
+              duration: 0.15,
+              ease: 'easeInOut',
+              rotateX: { duration: 0.3, delay: (links.length + 1) * 0.1 },
+            }}
+          >
+            <Button href="/sign-up" className="w-full">
+              Get Started
+            </Button>
+          </motion.div>
+        </SignedOut>
+        
+        <SignedIn>
+          <motion.div
+            initial={{ opacity: 0, rotateX: -90 }}
+            animate={{ opacity: 1, rotateX: 0 }}
+            transition={{
+              duration: 0.15,
+              ease: 'easeInOut',
+              rotateX: { duration: 0.3, delay: links.length * 0.1 },
+            }}
+          >
+            <Button href={getAppUrl()} className="w-full mb-2">
+              Dashboard
+            </Button>
+          </motion.div>
+          <div className="flex items-center gap-2">
+            <UserButton afterSignOutUrl="/" />
+            <span className="text-base font-medium text-gray-950">Account</span>
+          </div>
+        </SignedIn>
       </div>
       <div className="absolute left-1/2 w-screen -translate-x-1/2">
         <div className="absolute inset-x-0 top-0 border-t border-black/5" />
