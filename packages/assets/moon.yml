@@ -1,0 +1,16 @@
+project:
+  id: assets
+  name: '@accessaurus/assets'
+  description: 'Shared assets package for Accessaurus'
+  type: library
+  language: javascript
+
+fileGroups:
+  public:
+    - 'public/**/*'
+    
+tasks:
+  build:
+    command: 'echo "No build needed for assets"'
+    outputs:
+      - 'public/**/*'
