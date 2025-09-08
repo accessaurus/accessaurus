@@ -111,7 +111,7 @@ export function ApplicationLayout({
               <SidebarHeading>Quick Actions</SidebarHeading>
               <SidebarItem href="/new-optimization">
                 <PlusIcon />
-                <SidebarLabel>New Optimization</SidebarLabel>
+                <SidebarLabel>Add New Website</SidebarLabel>
               </SidebarItem>
               <SidebarItem href="/api-keys">
                 <Square2StackIcon />
