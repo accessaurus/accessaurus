@@ -13,6 +13,8 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { getAppUrl, getLandingUrl } from '@/lib/config'
 
 function MobileNavLink({
   href,
@@ -76,7 +78,7 @@ function MobileNavigation() {
         <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
         <MobileNavLink href="#pricing">Pricing</MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
-        <MobileNavLink href="/login">Sign in</MobileNavLink>
+        <MobileNavLink href={`${getAppUrl()}/sign-in`}>Sign in</MobileNavLink>
       </PopoverPanel>
     </Popover>
   )
@@ -99,7 +101,16 @@ export function Header() {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:block">
-              <NavLink href="/login">Sign in</NavLink>
+              <SignedOut>
+                <SignInButton signInUrl={`${getAppUrl()}/sign-in`}>
+                  <span className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+                    Sign in
+                  </span>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl={getLandingUrl()} />
+              </SignedIn>
             </div>
             <Button href="/register" color="teal">
               <span>
