@@ -1,0 +1,103 @@
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
+
+fileGroups:
+  sources:
+    - 'src/**/*'
+    - 'app/**/*'
+    - 'components/**/*'
+    - 'lib/**/*'
+    - 'utils/**/*'
+  configs:
+    - '*.config.*'
+    - '*.json'
+    - '.eslintrc*'
+    - '.prettierrc*'
+  tests:
+    - 'tests/**/*'
+    - '*.test.*'
+    - '*.spec.*'
+
+tasks:
+  install:
+    command: 'bun'
+    args:
+      - 'install'
+    inputs:
+      - 'package.json'
+      - 'bun.lockb'
+    outputs:
+      - 'node_modules'
+    options:
+      runInCI: true
+      cache: true
+
+  dev:
+    command: 'bun'
+    args:
+      - 'run'
+      - 'dev'
+    local: true
+    options:
+      persistent: true
+      cache: false
+
+  build:
+    command: 'bun'
+    args:
+      - 'run'
+      - 'build'
+    deps:
+      - '~:install'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - 'package.json'
+    outputs:
+      - '.next'
+      - 'dist'
+      - 'out'
+    options:
+      runInCI: true
+      cache: true
+
+  lint:
+    command: 'bun'
+    args:
+      - 'run'
+      - 'lint'
+    deps:
+      - '~:install'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    options:
+      runInCI: true
+      cache: true
+
+  format:
+    command: 'prettier'
+    args:
+      - '--write'
+      - '.'
+    deps:
+      - '~:install'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    options:
+      runInCI: false
+      cache: false
+
+  format-check:
+    command: 'prettier'
+    args:
+      - '--check'
+      - '.'
+    deps:
+      - '~:install'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    options:
+      runInCI: true
+      cache: true

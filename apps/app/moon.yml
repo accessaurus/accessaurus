@@ -1,0 +1,10 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+project:
+  name: 'app'
+  description: 'Accessaurus main application'
+
+tags:
+  - 'next'
+  - 'react'
+  - 'typescript'

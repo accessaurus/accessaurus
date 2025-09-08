@@ -4,3 +4,6 @@ projects:
   - "apps/*"
 
 telemetry: false
+
+runner:
+  inheritColorsForPipedTasks: true

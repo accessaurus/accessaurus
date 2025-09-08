@@ -1,0 +1,10 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+project:
+  name: 'landing'
+  description: 'Accessaurus landing page'
+
+tags:
+  - 'next'
+  - 'react'
+  - 'typescript'

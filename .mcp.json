@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "moon": {
+      "type": "stdio",
+      "command": "moon",
+      "args": [
+        "mcp"
+      ],
+      "env": {
+        "MOON_WORKSPACE_ROOT": "/home/sunghyun/Desktop/accessaurus"
+      }
+    }
+  }
+}
