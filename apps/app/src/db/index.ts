@@ -1,3 +1,3 @@
-export { db, schema } from './client'
+export { db, schema, requireDb } from './client'
 export * from './schema'
-
+export * from './zod'

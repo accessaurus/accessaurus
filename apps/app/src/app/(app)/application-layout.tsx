@@ -92,9 +92,9 @@ export function ApplicationLayout({
                 <HomeIcon />
                 <SidebarLabel>Dashboard</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="/optimizations" current={pathname.startsWith('/optimizations')}>
+              <SidebarItem href="/websites" current={pathname.startsWith('/websites')}>
                 <DocumentTextIcon />
-                <SidebarLabel>Page Optimizations</SidebarLabel>
+                <SidebarLabel>Websites</SidebarLabel>
               </SidebarItem>
               <SidebarItem href="/analytics" current={pathname.startsWith('/analytics')}>
                 <ChartBarIcon />
@@ -109,7 +109,7 @@ export function ApplicationLayout({
 
             <SidebarSection className="max-lg:hidden">
               <SidebarHeading>Quick Actions</SidebarHeading>
-              <SidebarItem href="/new-optimization">
+              <SidebarItem href="/websites/new">
                 <PlusIcon />
                 <SidebarLabel>Add New Website</SidebarLabel>
               </SidebarItem>

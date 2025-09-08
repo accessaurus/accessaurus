@@ -20,3 +20,8 @@ const client = connectionString
 
 export const db = client ? drizzle(client, { schema }) : undefined
 export { schema }
+
+export function requireDb() {
+  if (!db) throw new Error('DATABASE_URL is not set')
+  return db
+}

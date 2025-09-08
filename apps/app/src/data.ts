@@ -1,16 +1,16 @@
-export async function getPageOptimization(id: string) {
-  return (await getPageOptimizations()).find((page) => page.id.toString() === id)!
+export async function getWebsite(id: string) {
+  return (await getWebsites()).find((page) => page.id.toString() === id)!
 }
 
-export async function getRecentOptimizations() {
-  return (await getPageOptimizations()).slice(0, 10)
+export async function getRecentWebsites() {
+  return (await getWebsites()).slice(0, 10)
 }
 
-export async function getPageOptimizations() {
+export async function getWebsites() {
   return [
     {
       id: 3000,
-      url: '/optimizations/3000',
+      url: '/websites/3000',
       date: 'Dec 9, 2024',
       pageUrl: 'https://example.com/blog/accessibility-guide',
       pageTitle: 'Complete Guide to Web Accessibility',
@@ -30,7 +30,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3001,
-      url: '/optimizations/3001',
+      url: '/websites/3001',
       date: 'Dec 8, 2024',
       pageUrl: 'https://store.example.com/product/widget',
       pageTitle: 'Premium Widget - Buy Online',
@@ -50,7 +50,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3002,
-      url: '/optimizations/3002',
+      url: '/websites/3002',
       date: 'Dec 8, 2024',
       pageUrl: 'https://events.example.com/conference-2024',
       pageTitle: 'Tech Conference 2024',
@@ -70,7 +70,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3003,
-      url: '/optimizations/3003',
+      url: '/websites/3003',
       date: 'Dec 7, 2024',
       pageUrl: 'https://help.example.com/faq',
       pageTitle: 'Frequently Asked Questions',
@@ -90,7 +90,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3004,
-      url: '/optimizations/3004',
+      url: '/websites/3004',
       date: 'Dec 7, 2024',
       pageUrl: 'https://docs.example.com/tutorial',
       pageTitle: 'Getting Started Tutorial',
@@ -110,7 +110,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3005,
-      url: '/optimizations/3005',
+      url: '/websites/3005',
       date: 'Dec 6, 2024',
       pageUrl: 'https://news.example.com/latest-updates',
       pageTitle: 'Latest Industry Updates',
@@ -130,7 +130,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3006,
-      url: '/optimizations/3006',
+      url: '/websites/3006',
       date: 'Dec 6, 2024',
       pageUrl: 'https://shop.example.com/category/electronics',
       pageTitle: 'Electronics - Shop Online',
@@ -150,7 +150,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3007,
-      url: '/optimizations/3007',
+      url: '/websites/3007',
       date: 'Dec 5, 2024',
       pageUrl: 'https://blog.example.com/web-accessibility',
       pageTitle: 'Why Web Accessibility Matters',
@@ -170,7 +170,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3008,
-      url: '/optimizations/3008',
+      url: '/websites/3008',
       date: 'Dec 5, 2024',
       pageUrl: 'https://recipes.example.com/chocolate-cake',
       pageTitle: 'Best Chocolate Cake Recipe',
@@ -190,7 +190,7 @@ export async function getPageOptimizations() {
     },
     {
       id: 3009,
-      url: '/optimizations/3009',
+      url: '/websites/3009',
       date: 'Dec 4, 2024',
       pageUrl: 'https://courses.example.com/web-development',
       pageTitle: 'Web Development Masterclass',

@@ -3,10 +3,10 @@ import { Badge } from '@/components/badge'
 import { Heading, Subheading } from '@/components/heading'
 import { Select } from '@/components/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/table'
-import { getRecentOptimizations } from '@/data'
+import { getRecentWebsites } from '@/data'
 
 export default async function Home() {
-  let optimizations = await getRecentOptimizations()
+  let optimizations = await getRecentWebsites()
 
   return (
     <>
