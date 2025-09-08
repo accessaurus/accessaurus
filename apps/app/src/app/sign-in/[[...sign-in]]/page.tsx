@@ -13,7 +13,6 @@ export default function SignInPage() {
             headerSubtitle: 'Access your accessibility dashboard',
           },
         }}
-        afterSignInUrl="/"
         signUpUrl="/sign-up"
       />
     </div>

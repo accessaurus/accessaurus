@@ -13,8 +13,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { getAppUrl, getLandingUrl } from '@/lib/config'
+import { getAppUrl } from '@/lib/config'
 
 function MobileNavLink({
   href,
@@ -101,18 +100,13 @@ export function Header() {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:block">
-              <SignedOut>
-                <SignInButton signInUrl={`${getAppUrl()}/sign-in`}>
-                  <span className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">
-                    Sign in
-                  </span>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton afterSignOutUrl={getLandingUrl()} />
-              </SignedIn>
+              <Link href={`${getAppUrl()}/sign-in`}>
+                <span className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+                  Sign in
+                </span>
+              </Link>
             </div>
-            <Button href="/register" color="teal">
+            <Button href={`${getAppUrl()}/sign-up`} color="teal">
               <span>
                 Get started <span className="hidden lg:inline">today</span>
               </span>

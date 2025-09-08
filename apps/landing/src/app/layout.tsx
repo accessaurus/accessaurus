@@ -1,5 +1,4 @@
 import { type Metadata } from 'next'
-import { ClerkProvider } from '@clerk/nextjs'
 import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
@@ -32,17 +31,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html
-        lang="en"
-        className={clsx(
-          'h-full scroll-smooth bg-white antialiased',
-          inter.variable,
-          lexend.variable,
-        )}
-      >
-        <body className="flex h-full flex-col">{children}</body>
-      </html>
-    </ClerkProvider>
+    <html
+      lang="en"
+      className={clsx(
+        'h-full scroll-smooth bg-white antialiased',
+        inter.variable,
+        lexend.variable,
+      )}
+    >
+      <body className="flex h-full flex-col">{children}</body>
+    </html>
   )
 }
