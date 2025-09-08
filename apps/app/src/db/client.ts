@@ -5,7 +5,7 @@ import * as schema from './schema'
 const connectionString = process.env.DATABASE_URL
 
 if (!connectionString) {
-  console.warn('DATABASE_URL is not set. Drizzle client will be unusable until it is provided.')
+  throw new Error('DATABASE_URL is not set')
 }
 
 const client = connectionString
