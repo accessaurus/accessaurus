@@ -12,7 +12,7 @@ It’s **multi‑tenant**, **idempotent**, and **secure by design** (no secrets 
 
 * **Fewer manual edits:** consistent titles/descriptions and validated JSON‑LD.
 * **Safer automation:** schema‑validated outputs; no hallucinated facts.
-* **Predictable cost:** deduped by content hash + perceptual hashing; cache hits are free.
+* **Efficient by design:** deduped by content hash + perceptual hashing; skips trivial recomputation.
 * **Better for everyone:** accessible for people with disabilities, accessible for AI.
 
 ## Core capabilities

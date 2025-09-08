@@ -6,15 +6,20 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start -p 3000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate --config ./drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config ./drizzle.config.ts",
+    "db:studio": "drizzle-kit studio --config ./drizzle.config.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.9",
     "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.44.5",
     "motion": "^12.23.11",
     "next": "^15",
+    "postgres": "^3.4.7",
     "react": "^19",
     "react-dom": "^19"
   },
@@ -23,6 +28,7 @@
     "@types/node": "^24.1.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.4",
     "eslint": "^9",
     "eslint-config-next": "^15",
     "postcss": "^8",
