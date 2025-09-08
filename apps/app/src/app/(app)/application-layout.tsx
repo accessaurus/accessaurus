@@ -1,14 +1,5 @@
 'use client'
 
-import { Avatar } from '@/components/avatar'
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownDivider,
-  DropdownItem,
-  DropdownLabel,
-  DropdownMenu,
-} from '@/components/dropdown'
 import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '@/components/navbar'
 import {
   Sidebar,
@@ -25,13 +16,9 @@ import { SidebarLayout } from '@/components/sidebar-layout'
 import {
   UserButton,
   OrganizationSwitcher,
-  useUser,
-  useOrganization,
 } from '@clerk/nextjs'
 import { getLandingUrl } from '@/lib/config'
 import {
-  ChevronDownIcon,
-  ChevronUpIcon,
   Cog8ToothIcon,
   PlusIcon,
 } from '@heroicons/react/16/solid'
@@ -52,8 +39,6 @@ export function ApplicationLayout({
   children: React.ReactNode
 }) {
   let pathname = usePathname()
-  const { user } = useUser()
-  const { organization } = useOrganization()
 
   return (
     <SidebarLayout
@@ -70,20 +55,40 @@ export function ApplicationLayout({
       sidebar={
         <Sidebar>
           <SidebarHeader>
-            <div className="flex items-center gap-2 px-2 py-1.5">
-              <OrganizationSwitcher
-                hidePersonal
-                afterCreateOrganizationUrl="/org/:slug"
-                afterSelectOrganizationUrl="/org/:slug"
-                afterLeaveOrganizationUrl="/"
-                appearance={{
-                  elements: {
-                    rootBox: "flex w-full",
-                    organizationSwitcherTrigger: "w-full justify-between px-2 py-1.5 hover:bg-zinc-950/5 dark:hover:bg-white/5 rounded-lg",
+            <OrganizationSwitcher
+              hidePersonal
+              afterCreateOrganizationUrl="/org/:slug"
+              afterSelectOrganizationUrl="/org/:slug"
+              afterLeaveOrganizationUrl="/"
+              appearance={{
+                elements: {
+                  rootBox: {
+                    width: '100%',
                   },
-                }}
-              />
-            </div>
+                  organizationSwitcherTrigger: {
+                    width: '100%',
+                    padding: '0.5rem',
+                    justifyContent: 'space-between',
+                    borderRadius: '0.5rem',
+                    '&:hover': {
+                      backgroundColor: 'rgba(9, 9, 11, 0.05)',
+                    },
+                    '@media (prefers-color-scheme: dark)': {
+                      '&:hover': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      },
+                    },
+                  },
+                  organizationSwitcherTriggerIcon: {
+                    marginLeft: 'auto',
+                  },
+                  organizationPreview: {
+                    flex: '1',
+                    width: '100%',
+                  },
+                },
+              }}
+            />
           </SidebarHeader>
 
           <SidebarBody>
@@ -138,26 +143,45 @@ export function ApplicationLayout({
           </SidebarBody>
 
           <SidebarFooter className="max-lg:hidden">
-            <div className="flex items-center gap-3 px-2 py-3">
-              <UserButton 
-                afterSignOutUrl={getLandingUrl()}
-                appearance={{
-                  elements: {
-                    avatarBox: "size-10",
+            <UserButton
+              showName={true}
+              appearance={{
+                elements: {
+                  rootBox: {
+                    width: '100%',
                   },
-                }}
-              />
-              {user && (
-                <div className="min-w-0">
-                  <div className="block truncate text-sm/5 font-medium text-zinc-950 dark:text-white">
-                    {user.fullName || user.firstName || 'User'}
-                  </div>
-                  <div className="block truncate text-xs/5 font-normal text-zinc-500 dark:text-zinc-400">
-                    {organization?.name || user.primaryEmailAddress?.emailAddress}
-                  </div>
-                </div>
-              )}
-            </div>
+                  userButtonTrigger: {
+                    width: '100%',
+                    padding: '0.25rem',
+                    borderRadius: '0.5rem',
+                  },
+                  userButtonBox: {
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'row-reverse',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                  },
+                  userButtonOuterIdentifier: {
+                    flex: '1 1 0%',
+                    textAlign: 'left',
+                    minWidth: '0',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem',
+                    fontWeight: '500',
+                  },
+                  userButtonAvatarBox: {
+                    width: '2.5rem',
+                    height: '2.5rem',
+                    flexShrink: '0',
+                  },
+                },
+              }}
+            />
           </SidebarFooter>
         </Sidebar>
       }
