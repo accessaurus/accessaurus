@@ -22,7 +22,6 @@ import {
   SidebarSpacer,
 } from '@/components/sidebar'
 import { SidebarLayout } from '@/components/sidebar-layout'
-import { getCustomers } from '@/data'
 import {
   UserButton,
   OrganizationSwitcher,
@@ -44,7 +43,6 @@ import {
   QuestionMarkCircleIcon,
   SparklesIcon,
   Square2StackIcon,
-  UsersIcon,
 } from '@heroicons/react/20/solid'
 import { usePathname } from 'next/navigation'
 
@@ -102,10 +100,7 @@ export function ApplicationLayout({
                 <ChartBarIcon />
                 <SidebarLabel>Analytics</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="/customers" current={pathname.startsWith('/customers')}>
-                <UsersIcon />
-                <SidebarLabel>Customers</SidebarLabel>
-              </SidebarItem>
+              
               <SidebarItem href="/settings" current={pathname.startsWith('/settings')}>
                 <Cog6ToothIcon />
                 <SidebarLabel>Settings</SidebarLabel>

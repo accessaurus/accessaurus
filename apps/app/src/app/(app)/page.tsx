@@ -34,7 +34,6 @@ export default async function Home() {
           <TableRow>
             <TableHeader>Page URL</TableHeader>
             <TableHeader>Date</TableHeader>
-            <TableHeader>Customer</TableHeader>
             <TableHeader>Schema Type</TableHeader>
             <TableHeader>WCAG Score</TableHeader>
             <TableHeader>Status</TableHeader>
@@ -50,7 +49,6 @@ export default async function Home() {
                 </div>
               </TableCell>
               <TableCell className="text-zinc-500">{opt.date}</TableCell>
-              <TableCell>{opt.customer.company}</TableCell>
               <TableCell>
                 <Badge color={opt.metrics.schemaGenerated ? 'lime' : 'zinc'}>
                   {opt.metrics.schemaGenerated || 'None'}

@@ -30,7 +30,6 @@ export default async function Optimizations() {
           <TableRow>
             <TableHeader>Page</TableHeader>
             <TableHeader>Date</TableHeader>
-            <TableHeader>Customer</TableHeader>
             <TableHeader>Schema</TableHeader>
             <TableHeader>WCAG</TableHeader>
             <TableHeader>Status</TableHeader>
@@ -46,7 +45,6 @@ export default async function Optimizations() {
                 </div>
               </TableCell>
               <TableCell className="text-zinc-500">{opt.date}</TableCell>
-              <TableCell>{opt.customer.company}</TableCell>
               <TableCell>
                 <Badge color={opt.metrics.schemaGenerated ? 'lime' : 'zinc'}>
                   {opt.metrics.schemaGenerated || 'None'}
@@ -69,4 +67,3 @@ export default async function Optimizations() {
     </>
   )
 }
-

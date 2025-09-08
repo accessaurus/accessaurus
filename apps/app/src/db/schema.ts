@@ -11,7 +11,6 @@ import {
   uniqueIndex,
 } from 'drizzle-orm/pg-core'
 
-// Enums
 export const generationStatus = pgEnum('generation_status', [
   'queued',
   'running',
@@ -32,7 +31,6 @@ export const usageEvent = pgEnum('usage_event', [
   'activated',
 ])
 
-// Core tables
 export const tenants = pgTable('tenants', {
   id: uuid('id').defaultRandom().primaryKey(),
   name: varchar('name', { length: 128 }).notNull(),
@@ -157,7 +155,7 @@ export const outputs = pgTable(
       .references(() => generations.id, { onDelete: 'cascade' }),
     kind: outputKind('kind').notNull(),
     body: jsonb('body').notNull(),
-    confidence: varchar('confidence', { length: 16 }), // e.g. "0.92"
+    confidence: varchar('confidence', { length: 16 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .defaultNow()
       .notNull(),
@@ -187,4 +185,3 @@ export const usageLogs = pgTable('usage_logs', {
     .defaultNow()
     .notNull(),
 })
-

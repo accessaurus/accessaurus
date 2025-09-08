@@ -75,10 +75,7 @@ export default async function Optimization({ params }: { params: Promise<{ id: s
             <TableCell>Accessibility features</TableCell>
             <TableCell>{opt.metrics.accessibilityFeatures}</TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell>Customer</TableCell>
-            <TableCell>{opt.customer.company}</TableCell>
-          </TableRow>
+          
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>{opt.date}</TableCell>
@@ -88,4 +85,3 @@ export default async function Optimization({ params }: { params: Promise<{ id: s
     </>
   )
 }
-
