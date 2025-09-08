@@ -6,15 +6,23 @@ const isPublicRoute = createRouteMatcher([
   '/sign-up(.*)',
 ])
 
-export default clerkMiddleware(async (auth, req) => {
-  // Protect all routes except public ones
-  if (!isPublicRoute(req)) {
-    await auth.protect()
+export default clerkMiddleware(
+  async (auth, req) => {
+    // Protect all routes except public ones
+    if (!isPublicRoute(req)) {
+      await auth.protect()
+    }
+  },
+  {
+    // Enable organization sync - automatically set active org based on URL
+    organizationSyncOptions: {
+      organizationPatterns: [
+        '/org/:slug',
+        '/org/:slug/(.*)',
+      ],
+    },
   }
-}, {
-  // Enable organization support with URL-based routing
-  organizationPattern: '/org/:slug(.*)',
-})
+)
 
 export const config = {
   matcher: [

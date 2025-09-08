@@ -1,18 +1,20 @@
-import { Stat } from '@/app/stat'
 import { Badge } from '@/components/badge'
 import { Heading, Subheading } from '@/components/heading'
 import { Select } from '@/components/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/table'
-import { getRecentOptimizations } from '@/data'
+import { getPageOptimizations } from '@/data'
 
-export default async function Home() {
-  let optimizations = await getRecentOptimizations()
+export const metadata = {
+  title: 'Optimizations',
+}
+
+export default async function Optimizations() {
+  const items = await getPageOptimizations()
 
   return (
     <>
-      <Heading>Accessaurus Dashboard</Heading>
-      <div className="mt-8 flex items-end justify-between">
-        <Subheading>Overview</Subheading>
+      <div className="flex items-end justify-between">
+        <Heading>Optimizations</Heading>
         <div>
           <Select name="period">
             <option value="last_week">Last week</option>
@@ -22,26 +24,20 @@ export default async function Home() {
           </Select>
         </div>
       </div>
-      <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat title="Pages Optimized" value="2.3M+" change="+12.5%" />
-        <Stat title="WCAG Compliance" value="89%" change="+3.2%" />
-        <Stat title="Users Served" value="450K" change="+18.7%" />
-        <Stat title="Schema Generated" value="1.8M" change="+24.3%" />
-      </div>
-      <Subheading className="mt-14">Recent Optimizations</Subheading>
+      <Subheading className="mt-8">Recent activity</Subheading>
       <Table className="mt-4 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)]">
         <TableHead>
           <TableRow>
-            <TableHeader>Page URL</TableHeader>
+            <TableHeader>Page</TableHeader>
             <TableHeader>Date</TableHeader>
             <TableHeader>Customer</TableHeader>
-            <TableHeader>Schema Type</TableHeader>
-            <TableHeader>WCAG Score</TableHeader>
+            <TableHeader>Schema</TableHeader>
+            <TableHeader>WCAG</TableHeader>
             <TableHeader>Status</TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
-          {optimizations.map((opt) => (
+          {items.map((opt) => (
             <TableRow key={opt.id} href={opt.url} title={`Optimization #${opt.id}`}>
               <TableCell>
                 <div className="max-w-xs truncate">
@@ -57,24 +53,12 @@ export default async function Home() {
                 </Badge>
               </TableCell>
               <TableCell>
-                <Badge 
-                  color={
-                    opt.metrics.wcagScore === '100%' ? 'lime' : 
-                    opt.metrics.wcagScore >= '85%' ? 'amber' : 
-                    'pink'
-                  }
-                >
+                <Badge color={opt.metrics.wcagScore === '100%' ? 'lime' : 'amber'}>
                   {opt.metrics.wcagScore}
                 </Badge>
               </TableCell>
               <TableCell>
-                <Badge 
-                  color={
-                    opt.status === 'optimized' ? 'lime' : 
-                    opt.status === 'partial' ? 'amber' : 
-                    'pink'
-                  }
-                >
+                <Badge color={opt.status === 'optimized' ? 'lime' : opt.status === 'partial' ? 'amber' : 'pink'}>
                   {opt.status}
                 </Badge>
               </TableCell>
@@ -85,3 +69,4 @@ export default async function Home() {
     </>
   )
 }
+

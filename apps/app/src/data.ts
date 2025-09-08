@@ -292,3 +292,154 @@ export function getSchemaTypes() {
     'VideoObject',
   ]
 }
+
+// Placeholder functions for pages that still need them
+// These will be replaced when those pages are updated for Accessaurus
+export async function getEvent(id: string) {
+  return {
+    id,
+    name: 'Sample Event',
+    url: `/events/${id}`,
+    date: 'Jan 1, 2024',
+    time: '10:00 AM',
+    location: 'Online',
+    totalRevenue: '$0',
+    totalRevenueChange: '+0%',
+    ticketsAvailable: 0,
+    ticketsSold: 0,
+    ticketsSoldChange: '+0%',
+    pageViews: '0',
+    pageViewsChange: '+0%',
+    status: 'Draft',
+    imgUrl: '/placeholder.jpg',
+    thumbUrl: '/placeholder-thumb.jpg',
+  }
+}
+
+export async function getEvents() {
+  // Return empty array with proper type
+  return [] as Array<{
+    id: string | number
+    name: string
+    url: string
+    date: string
+    time: string
+    location: string
+    totalRevenue: string
+    totalRevenueChange: string
+    ticketsAvailable: number
+    ticketsSold: number
+    ticketsSoldChange: string
+    pageViews: string
+    pageViewsChange: string
+    status: string
+    imgUrl: string
+    thumbUrl: string
+  }>
+}
+
+export async function getEventOrders(id: string) {
+  // Return empty array with proper type
+  return [] as Array<{
+    id: string
+    url: string
+    date: string
+    amount: {
+      usd: string
+      cad: string
+      fee: string
+      net: string
+    }
+    customer: {
+      name: string
+      email: string
+      address: string
+      country: string
+      countryFlagUrl: string
+    }
+  }>
+}
+
+export async function getOrder(id: string) {
+  return {
+    id,
+    url: `/orders/${id}`,
+    date: 'Jan 1, 2024',
+    amount: {
+      usd: '$0.00',
+      cad: '$0.00',
+      fee: '$0.00',
+      net: '$0.00',
+    },
+    payment: {
+      transactionId: 'N/A',
+      card: {
+        number: '0000',
+        type: 'N/A',
+        expiry: 'N/A',
+      },
+    },
+    customer: {
+      name: 'N/A',
+      email: 'N/A',
+      address: 'N/A',
+      country: 'N/A',
+      countryFlagUrl: '/flags/us.svg',
+    },
+    event: await getEvent('0'),
+  }
+}
+
+export async function getOrders() {
+  // Return empty array with proper type
+  return [] as Array<{
+    id: string | number
+    url: string
+    date: string
+    amount: {
+      usd: string
+      cad: string
+      fee: string
+      net: string
+    }
+    payment: {
+      transactionId: string
+      card: {
+        number: string
+        type: string
+        expiry: string
+      }
+    }
+    customer: {
+      name: string
+      email: string
+      address: string
+      country: string
+      countryFlagUrl: string
+    }
+    event: Awaited<ReturnType<typeof getEvent>>
+  }>
+}
+
+export function getCountries() {
+  return [
+    {
+      name: 'United States',
+      code: 'US',
+      flagUrl: '/flags/us.svg',
+      regions: ['California', 'New York', 'Texas', 'Florida'],
+    },
+    {
+      name: 'Canada',
+      code: 'CA',
+      flagUrl: '/flags/ca.svg',
+      regions: ['Ontario', 'Quebec', 'British Columbia', 'Alberta'],
+    },
+    {
+      name: 'United Kingdom',
+      code: 'GB',
+      flagUrl: '/flags/gb.svg',
+      regions: ['England', 'Scotland', 'Wales', 'Northern Ireland'],
+    },
+  ]
+}

@@ -1,41 +1,45 @@
-import { SanityLive } from '@/sanity/live'
-import { revalidateSyncTags } from '@/sanity/revalidateSyncTags'
+import { type Metadata } from 'next'
+import { Inter, Lexend } from 'next/font/google'
+import clsx from 'clsx'
+
 import '@/styles/tailwind.css'
-import type { Metadata } from 'next'
-import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   title: {
     template: '%s - Accessaurus',
-    default: 'Accessaurus - Making the Web Accessible for All',
+    default: 'Accessaurus — Making the web accessible for all',
   },
+  description:
+    'Accessaurus is a drop‑in SDK that generates screen‑reader‑friendly meta, Schema.org JSON‑LD, and AI‑readable structure — server‑first and WCAG‑aligned.',
 }
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+const lexend = Lexend({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lexend',
+})
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <link
-            rel="stylesheet"
-            href="https://api.fontshare.com/css?f%5B%5D=switzer@400,500,600,700&amp;display=swap"
-          />
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="The Accessaurus Blog"
-            href="/blog/feed.xml"
-          />
-        </head>
-        <body className="text-gray-950 antialiased">
-          {children}
-          <SanityLive revalidateSyncTags={revalidateSyncTags} />
-        </body>
-      </html>
-    </ClerkProvider>
+    <html
+      lang="en"
+      className={clsx(
+        'h-full scroll-smooth bg-white antialiased',
+        inter.variable,
+        lexend.variable,
+      )}
+    >
+      <body className="flex h-full flex-col">{children}</body>
+    </html>
   )
 }
