@@ -33,9 +33,9 @@ const faqs = [
         'We add Schema.org JSON‑LD and semantic markers so assistants can better understand and explain your content.',
     },
     {
-      question: 'Do you support nonprofits and education?',
+      question: 'How much does Accessaurus cost?',
       answer:
-        'Yes. We offer a free tier for nonprofits and discounts for education. Contact us to get set up.',
+        'Accessaurus is free for now while we focus on product quality and impact. No pricing or billing is required to use it.',
     },
   ],
   [
