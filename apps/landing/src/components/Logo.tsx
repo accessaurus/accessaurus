@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import accessaurusLogo from '@accessaurus/assets/public/logo.png'
+import accessaurusLogo from '@/images/logo.png'
 
 export function Logo({ className }: { className?: string }) {
   return (

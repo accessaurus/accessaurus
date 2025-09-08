@@ -1,0 +1,26 @@
+$schema: "https://moonrepo.dev/schemas/project.json"
+
+type: application
+language: typescript
+tags: [nextjs]
+
+tasks:
+  dev:
+    command: "next dev -p 3100"
+    platform: node
+    interactive: true
+
+  build:
+    command: "next build"
+    platform: node
+    inputs: ["src/**", "public/**", "next.config.*", "package.json", "tsconfig.json", "postcss.*", "tailwind*.*"]
+    outputs: [".next/**"]
+
+  start:
+    command: "next start -p 3100"
+    platform: node
+    interactive: true
+
+  lint:
+    command: "next lint"
+    platform: node

@@ -1,9 +1,0 @@
-{
-  "name": "@accessaurus/assets",
-  "version": "1.0.0",
-  "description": "Shared assets for Accessaurus",
-  "private": true,
-  "files": [
-    "public"
-  ]
-}
