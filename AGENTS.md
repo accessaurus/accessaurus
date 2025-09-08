@@ -1,1 +1,1 @@
-Always read all the ADRs in the packages/adr directory before coding.
+Always read all the ADRs in the docs/adr directory before coding.
