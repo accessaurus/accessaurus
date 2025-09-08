@@ -53,9 +53,9 @@ tasks:
       - '@group(configs)'
       - 'package.json'
     outputs:
-      - '.next'
-      - 'dist'
-      - 'out'
+      - '.next/**/*'
+      - 'dist/**/*'
+      - 'out/**/*'
     options:
       runInCI: true
       cache: true
