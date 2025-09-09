@@ -27,7 +27,6 @@ export default function AddSite() {
       <Divider className="my-10" soft />
 
       <div className="flex items-center justify-between">
-        <div className="text-sm text-zinc-500">Step 1 of 2</div>
         <div className="flex justify-end gap-4">
           <Button type="reset" plain>
             Reset
