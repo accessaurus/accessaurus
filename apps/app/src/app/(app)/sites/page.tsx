@@ -3,11 +3,10 @@ import { Heading, Subheading } from '@/components/heading'
 import { Select } from '@/components/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/table'
 import { requireDb, schema, PageRowZ, TransformStatusZ, type TransformStatus } from '@/db'
-import { desc, eq, inArray } from 'drizzle-orm'
+import { desc, inArray, eq } from 'drizzle-orm'
+import { auth } from '@clerk/nextjs/server'
 
-export const metadata = {
-  title: 'Websites',
-}
+export const metadata = { title: 'My Sites' }
 
 type Row = {
   id: string
@@ -17,34 +16,34 @@ type Row = {
   status: 'new' | TransformStatus
 }
 
+export default async function Sites() {
+  const { orgId } = await auth()
+  if (!orgId) {
+    return (
+      <div>
+        <Heading>My Sites</Heading>
+        <p className="mt-4 text-sm text-zinc-500">Select an organization to manage sites.</p>
+      </div>
+    )
+  }
 
-export default async function Websites() {
   const db = requireDb()
   let rows: Row[] = []
   {
-    const websitesRaw = await db
-      .select({
-        id: schema.pages.id,
-        url: schema.pages.url,
-        title: schema.pages.title,
-        createdAt: schema.pages.createdAt,
-      })
+    const sitesRaw = await db
+      .select({ id: schema.pages.id, url: schema.pages.url, title: schema.pages.title, createdAt: schema.pages.createdAt })
       .from(schema.pages)
+      .where(eq(schema.pages.orgId, orgId))
       .orderBy(desc(schema.pages.createdAt))
       .limit(50)
-    const websites = PageRowZ.array().parse(websitesRaw)
+    const sites = PageRowZ.array().parse(sitesRaw)
 
-    const ids = websites.map((w) => w.id)
+    const ids = sites.map((w) => w.id)
     let statusMap = new Map<string, TransformStatus | 'new'>()
 
     if (ids.length) {
       const gens = await db
-        .select({
-          id: schema.transforms.id,
-          pageId: schema.transforms.pageId,
-          status: schema.transforms.status,
-          createdAt: schema.transforms.createdAt,
-        })
+        .select({ id: schema.transforms.id, pageId: schema.transforms.pageId, status: schema.transforms.status, createdAt: schema.transforms.createdAt })
         .from(schema.transforms)
         .where(inArray(schema.transforms.pageId, ids))
         .orderBy(desc(schema.transforms.createdAt))
@@ -52,19 +51,13 @@ export default async function Websites() {
       for (const g of gens) if (!statusMap.has(g.pageId)) statusMap.set(g.pageId, TransformStatusZ.parse(g.status))
     }
 
-    rows = websites.map((w) => ({
-      id: w.id,
-      url: w.url,
-      title: w.title,
-      createdAt: w.createdAt,
-      status: (statusMap.get(w.id) ?? 'new') as TransformStatus | 'new',
-    }))
+    rows = sites.map((w) => ({ id: w.id, url: w.url, title: w.title, createdAt: w.createdAt, status: (statusMap.get(w.id) ?? 'new') as TransformStatus | 'new' }))
   }
 
   return (
     <>
       <div className="flex items-end justify-between">
-        <Heading>Websites</Heading>
+        <Heading>My Sites</Heading>
         <div>
           <Select name="period">
             <option value="last_week">Last week</option>
@@ -85,7 +78,7 @@ export default async function Websites() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.id} href={`/websites/${row.id}`} title={row.title ?? row.url}>
+            <TableRow key={row.id} href={`/site/${row.id}`} title={row.title ?? row.url}>
               <TableCell>
                 <div className="max-w-xs truncate">
                   <span className="font-medium">{row.title ?? row.url}</span>
@@ -105,3 +98,4 @@ export default async function Websites() {
     </>
   )
 }
+

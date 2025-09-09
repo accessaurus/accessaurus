@@ -10,6 +10,8 @@ export const TransformStatusZ = z.enum([
 
 export const OutputKindZ = z.enum(['semantic_html', 'metrics'])
 
+export const ReviewStatusZ = z.enum(['pending', 'approved', 'rejected'])
+
 export const PageRowZ = z.object({
   id: z.string().uuid(),
   url: z.string().url(),
@@ -21,6 +23,7 @@ export const TransformZ = z.object({
   id: z.string().uuid(),
   pageId: z.string().uuid(),
   status: TransformStatusZ,
+  reviewStatus: ReviewStatusZ.default('pending'),
   createdAt: z.coerce.date(),
 })
 

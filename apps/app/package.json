@@ -11,17 +11,21 @@
     "db:up": "docker start accessaurus-postgres 2>/dev/null || docker run --name accessaurus-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=accessaurus -p 5432:5432 -v accessaurus_pg:/var/lib/postgresql/data -d postgres:16-alpine",
     "db:generate": "drizzle-kit generate --config ./drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config ./drizzle.config.ts",
-    "db:studio": "drizzle-kit studio --config ./drizzle.config.ts"
+    "db:studio": "drizzle-kit studio --config ./drizzle.config.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.9",
     "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
+    "diff": "^5",
     "drizzle-orm": "^0.44.5",
     "hast-util-is-element": "^3.0.0",
     "motion": "^12.23.11",
     "next": "^15",
+    "ollama": "^0.5.11",
+    "openai": "^4",
     "postgres": "^3.4.7",
     "react": "^19",
     "react-dom": "^19",
@@ -32,6 +36,7 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^24.1.0",
     "@types/react": "^19",

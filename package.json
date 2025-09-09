@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/diff": "^8.0.0"
+  },
+  "engines": {
+    "node": "~20"
+  }
+}

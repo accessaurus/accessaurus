@@ -6,7 +6,9 @@ const isPublicRoute = createRouteMatcher([
   '/sign-up(.*)',
   // Public demo routes for semantic transformer
   '/semantify(.*)',
-  '/api/semantify(.*)'
+  '/api/semantify(.*)',
+  // Public SDK endpoints
+  '/api/sdk(.*)'
 ])
 
 export default clerkMiddleware(

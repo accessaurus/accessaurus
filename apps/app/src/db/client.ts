@@ -4,10 +4,7 @@ import * as schema from './schema'
 
 const connectionString = process.env.DATABASE_URL
 
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set')
-}
-
+// Do not throw at import time to allow OPTIONS/CORS preflight without DB.
 const client = connectionString
   ? postgres(connectionString, {
       max: 1,

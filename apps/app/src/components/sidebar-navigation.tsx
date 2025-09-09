@@ -6,17 +6,7 @@ import {
   SidebarLabel,
   SidebarSection,
 } from '@/components/sidebar'
-import {
-  ChartBarIcon,
-  Cog6ToothIcon,
-  DocumentTextIcon,
-  HomeIcon,
-  QuestionMarkCircleIcon,
-  SparklesIcon,
-  Square2StackIcon,
-  Cog8ToothIcon,
-  PlusIcon,
-} from '@heroicons/react/20/solid'
+import { Cog6ToothIcon, HomeIcon, QuestionMarkCircleIcon, SparklesIcon, Square2StackIcon, Cog8ToothIcon, PlusIcon } from '@heroicons/react/20/solid'
 
 export function MainNavigation() {
   const pathname = usePathname()
@@ -27,13 +17,9 @@ export function MainNavigation() {
         <HomeIcon />
         <SidebarLabel>Dashboard</SidebarLabel>
       </SidebarItem>
-      <SidebarItem href="/websites" current={pathname.startsWith('/websites')}>
-        <DocumentTextIcon />
-        <SidebarLabel>Websites</SidebarLabel>
-      </SidebarItem>
-      <SidebarItem href="/analytics" current={pathname.startsWith('/analytics')}>
-        <ChartBarIcon />
-        <SidebarLabel>Analytics</SidebarLabel>
+      <SidebarItem href="/sites" current={pathname.startsWith('/sites') || pathname.startsWith('/site/')}>
+        <Square2StackIcon />
+        <SidebarLabel>My Sites</SidebarLabel>
       </SidebarItem>
       <SidebarItem href="/settings" current={pathname.startsWith('/settings')}>
         <Cog6ToothIcon />
@@ -47,9 +33,9 @@ export function QuickActionsNavigation() {
   return (
     <SidebarSection className="max-lg:hidden">
       <SidebarHeading>Quick Actions</SidebarHeading>
-      <SidebarItem href="/websites/new">
+      <SidebarItem href="/sites/new">
         <PlusIcon />
-        <SidebarLabel>Add New Website</SidebarLabel>
+        <SidebarLabel>Add New Site</SidebarLabel>
       </SidebarItem>
       <SidebarItem href="/api-keys">
         <Square2StackIcon />

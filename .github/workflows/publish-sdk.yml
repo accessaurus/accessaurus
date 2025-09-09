@@ -1,0 +1,54 @@
+name: Publish SDK
+
+on:
+  push:
+    tags:
+      - 'sdk-v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 0.1.1)'
+        required: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Set version from tag or input
+        id: vars
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+            # TAG format: sdk-vX.Y.Z
+            echo "Detected tag: $TAG"
+            VERSION="${TAG#sdk-v}"
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build SDK
+        working-directory: packages/sdk
+        run: |
+          npm ci || npm install
+          npm version ${{ steps.vars.outputs.version }} --no-git-tag-version
+          npm run build
+
+      - name: Publish to npm
+        working-directory: packages/sdk
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm publish --access public
+

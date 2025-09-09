@@ -1,15 +1,15 @@
-# Catalyst Demo
+# Accessaurus App
 
-To run the Catalyst demo, first install the npm dependencies:
-
-```bash
-npm install
-```
-
-Next, run the development server:
+To run the Accessaurus App with Bun, first install dependencies:
 
 ```bash
-npm run dev
+bun install
 ```
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+Then, run the development server:
+
+```bash
+bun run dev
+```
+
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the app.

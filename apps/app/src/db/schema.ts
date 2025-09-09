@@ -21,6 +21,8 @@ export const transformStatus = pgEnum('transform_status', [
 
 export const outputKind = pgEnum('output_kind', ['semantic_html', 'metrics'])
 
+export const reviewStatus = pgEnum('review_status', ['pending', 'approved', 'rejected'])
+
 export const usageEvent = pgEnum('usage_event', [
   'request',
   'cache_hit',
@@ -111,10 +113,13 @@ export const transforms = pgTable(
     engine: varchar('engine', { length: 128 }),
     status: transformStatus('status').notNull().default('queued'),
     error: text('error'),
+    reviewStatus: reviewStatus('review_status').notNull().default('pending'),
+    reviewerId: varchar('reviewer_id', { length: 128 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .defaultNow()
       .notNull(),
     completedAt: timestamp('completed_at', { withTimezone: true }),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }),
   },
   (t) => ({
     idempotentUnique: uniqueIndex('transforms_page_input_unique').on(
