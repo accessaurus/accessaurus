@@ -2,7 +2,7 @@ import { Badge } from '@/components/badge'
 import { Heading, Subheading } from '@/components/heading'
 import { Select } from '@/components/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/table'
-import { requireDb, schema, ContentItemRowZ, GenerationStatusZ, type GenerationStatus } from '@/db'
+import { requireDb, schema, PageRowZ, TransformStatusZ, type TransformStatus } from '@/db'
 import { desc, eq, inArray } from 'drizzle-orm'
 
 export const metadata = {
@@ -14,8 +14,7 @@ type Row = {
   url: string
   title: string | null
   createdAt: Date
-  schemaType: string | null
-  status: 'new' | GenerationStatus
+  status: 'new' | TransformStatus
 }
 
 
@@ -25,48 +24,32 @@ export default async function Websites() {
   {
     const websitesRaw = await db
       .select({
-        id: schema.contentItems.id,
-        url: schema.contentItems.url,
-        title: schema.contentItems.title,
-        createdAt: schema.contentItems.createdAt,
+        id: schema.pages.id,
+        url: schema.pages.url,
+        title: schema.pages.title,
+        createdAt: schema.pages.createdAt,
       })
-      .from(schema.contentItems)
-      .orderBy(desc(schema.contentItems.createdAt))
+      .from(schema.pages)
+      .orderBy(desc(schema.pages.createdAt))
       .limit(50)
-    const websites = ContentItemRowZ.array().parse(websitesRaw)
+    const websites = PageRowZ.array().parse(websitesRaw)
 
     const ids = websites.map((w) => w.id)
-    let schemaMap = new Map<string, string | null>()
-    let statusMap = new Map<string, GenerationStatus | 'new'>()
+    let statusMap = new Map<string, TransformStatus | 'new'>()
 
     if (ids.length) {
       const gens = await db
         .select({
-          id: schema.generations.id,
-          contentItemId: schema.generations.contentItemId,
-          status: schema.generations.status,
-          createdAt: schema.generations.createdAt,
+          id: schema.transforms.id,
+          pageId: schema.transforms.pageId,
+          status: schema.transforms.status,
+          createdAt: schema.transforms.createdAt,
         })
-        .from(schema.generations)
-        .where(inArray(schema.generations.contentItemId, ids))
-        .orderBy(desc(schema.generations.createdAt))
+        .from(schema.transforms)
+        .where(inArray(schema.transforms.pageId, ids))
+        .orderBy(desc(schema.transforms.createdAt))
 
-      for (const g of gens) if (!statusMap.has(g.contentItemId)) statusMap.set(g.contentItemId, GenerationStatusZ.parse(g.status))
-
-      const outs = await db
-        .select({
-          contentItemId: schema.generations.contentItemId,
-          body: schema.outputs.body,
-        })
-        .from(schema.outputs)
-        .innerJoin(schema.generations, eq(schema.outputs.generationId, schema.generations.id))
-        .where(inArray(schema.generations.contentItemId, ids))
-
-      for (const o of outs) if (!schemaMap.has(o.contentItemId)) {
-        const b: any = o.body as any
-        const t = (b && (b['@type'] || b.type)) as string | undefined
-        schemaMap.set(o.contentItemId, t ?? null)
-      }
+      for (const g of gens) if (!statusMap.has(g.pageId)) statusMap.set(g.pageId, TransformStatusZ.parse(g.status))
     }
 
     rows = websites.map((w) => ({
@@ -74,8 +57,7 @@ export default async function Websites() {
       url: w.url,
       title: w.title,
       createdAt: w.createdAt,
-      schemaType: schemaMap.get(w.id) ?? null,
-      status: (statusMap.get(w.id) ?? 'new') as GenerationStatus | 'new',
+      status: (statusMap.get(w.id) ?? 'new') as TransformStatus | 'new',
     }))
   }
 
@@ -98,7 +80,6 @@ export default async function Websites() {
           <TableRow>
             <TableHeader>Page</TableHeader>
             <TableHeader>Date</TableHeader>
-            <TableHeader>Schema</TableHeader>
             <TableHeader>Status</TableHeader>
           </TableRow>
         </TableHead>
@@ -112,11 +93,6 @@ export default async function Websites() {
                 </div>
               </TableCell>
               <TableCell className="text-zinc-500">{new Date(row.createdAt).toLocaleDateString()}</TableCell>
-              <TableCell>
-                <Badge color={row.schemaType ? 'lime' : 'zinc'}>
-                  {row.schemaType || 'None'}
-                </Badge>
-              </TableCell>
               <TableCell>
                 <Badge color={row.status === 'success' ? 'lime' : row.status === 'queued' || row.status === 'running' ? 'amber' : 'zinc'}>
                   {row.status}

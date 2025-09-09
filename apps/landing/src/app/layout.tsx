@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Accessaurus — Making the web accessible for all',
   },
   description:
-    'Accessaurus is a drop‑in SDK that generates screen‑reader‑friendly meta, Schema.org JSON‑LD, and AI‑readable structure — server‑first and WCAG‑aligned.',
+    'Accessaurus upgrades div‑soup into semantic, accessible HTML — server‑first, WCAG‑aligned, and optionally AI‑assisted.',
 }
 
 const inter = Inter({

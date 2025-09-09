@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const GenerationStatusZ = z.enum([
+export const TransformStatusZ = z.enum([
   'queued',
   'running',
   'success',
@@ -8,22 +8,21 @@ export const GenerationStatusZ = z.enum([
   'skipped',
 ])
 
-export const OutputKindZ = z.enum(['meta', 'jsonld', 'synonyms'])
+export const OutputKindZ = z.enum(['semantic_html', 'metrics'])
 
-export const ContentItemRowZ = z.object({
+export const PageRowZ = z.object({
   id: z.string().uuid(),
   url: z.string().url(),
   title: z.string().nullable(),
   createdAt: z.coerce.date(),
 })
 
-export const GenerationZ = z.object({
+export const TransformZ = z.object({
   id: z.string().uuid(),
-  contentItemId: z.string().uuid(),
-  status: GenerationStatusZ,
+  pageId: z.string().uuid(),
+  status: TransformStatusZ,
   createdAt: z.coerce.date(),
 })
 
-export type GenerationStatus = z.infer<typeof GenerationStatusZ>
-export type ContentItemRow = z.infer<typeof ContentItemRowZ>
-
+export type TransformStatus = z.infer<typeof TransformStatusZ>
+export type PageRow = z.infer<typeof PageRowZ>

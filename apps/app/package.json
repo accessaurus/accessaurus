@@ -2,6 +2,7 @@
   "name": "@accessaurus/app",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "bun@1.2.21",
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
@@ -18,11 +19,16 @@
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.44.5",
+    "hast-util-is-element": "^3.0.0",
     "motion": "^12.23.11",
     "next": "^15",
     "postgres": "^3.4.7",
     "react": "^19",
     "react-dom": "^19",
+    "rehype-parse": "^9.0.1",
+    "rehype-stringify": "^10.0.1",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0",
     "zod": "^4.1.5"
   },
   "devDependencies": {

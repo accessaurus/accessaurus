@@ -11,7 +11,7 @@ import {
   uniqueIndex,
 } from 'drizzle-orm/pg-core'
 
-export const generationStatus = pgEnum('generation_status', [
+export const transformStatus = pgEnum('transform_status', [
   'queued',
   'running',
   'success',
@@ -19,7 +19,7 @@ export const generationStatus = pgEnum('generation_status', [
   'skipped',
 ])
 
-export const outputKind = pgEnum('output_kind', ['meta', 'jsonld', 'synonyms'])
+export const outputKind = pgEnum('output_kind', ['semantic_html', 'metrics'])
 
 export const usageEvent = pgEnum('usage_event', [
   'request',
@@ -31,25 +31,11 @@ export const usageEvent = pgEnum('usage_event', [
   'activated',
 ])
 
-export const tenants = pgTable('tenants', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  name: varchar('name', { length: 128 }).notNull(),
-  slug: varchar('slug', { length: 128 }),
-  createdAt: timestamp('created_at', { withTimezone: true })
-    .defaultNow()
-    .notNull(),
-  updatedAt: timestamp('updated_at', { withTimezone: true })
-    .defaultNow()
-    .notNull(),
-})
-
 export const domains = pgTable(
   'domains',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    tenantId: uuid('tenant_id')
-      .notNull()
-      .references(() => tenants.id, { onDelete: 'cascade' }),
+    orgId: varchar('org_id', { length: 128 }).notNull(),
     domain: varchar('domain', { length: 255 }).notNull(),
     verified: boolean('verified').notNull().default(false),
     verificationToken: varchar('verification_token', { length: 64 }).notNull(),
@@ -58,11 +44,12 @@ export const domains = pgTable(
       .notNull(),
   },
   (t) => ({
-    tenantDomainUnique: uniqueIndex('domains_tenant_domain_unique').on(
-      t.tenantId,
+    orgDomainUnique: uniqueIndex('domains_org_domain_unique').on(
+      t.orgId,
       t.domain,
     ),
     domainIdx: index('domains_domain_idx').on(t.domain),
+    orgIdx: index('domains_org_idx').on(t.orgId),
   }),
 )
 
@@ -70,9 +57,7 @@ export const apiKeys = pgTable(
   'api_keys',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    tenantId: uuid('tenant_id')
-      .notNull()
-      .references(() => tenants.id, { onDelete: 'cascade' }),
+    orgId: varchar('org_id', { length: 128 }).notNull(),
     name: varchar('name', { length: 128 }),
     keyHash: varchar('key_hash', { length: 128 }).notNull(),
     lastUsedAt: timestamp('last_used_at', { withTimezone: true }),
@@ -83,17 +68,15 @@ export const apiKeys = pgTable(
   },
   (t) => ({
     keyHashUnique: uniqueIndex('api_keys_key_hash_unique').on(t.keyHash),
-    tenantIdx: index('api_keys_tenant_idx').on(t.tenantId),
+    orgIdx: index('api_keys_org_idx').on(t.orgId),
   }),
 )
 
-export const contentItems = pgTable(
-  'content_items',
+export const pages = pgTable(
+  'pages',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    tenantId: uuid('tenant_id')
-      .notNull()
-      .references(() => tenants.id, { onDelete: 'cascade' }),
+    orgId: varchar('org_id', { length: 128 }).notNull(),
     url: text('url').notNull(),
     title: text('title'),
     type: varchar('type', { length: 32 }),
@@ -106,28 +89,27 @@ export const contentItems = pgTable(
       .notNull(),
   },
   (t) => ({
-    tenantUrlUnique: uniqueIndex('content_items_tenant_url_unique').on(
-      t.tenantId,
+    orgUrlUnique: uniqueIndex('pages_org_url_unique').on(
+      t.orgId,
       t.url,
     ),
-    contentHashIdx: index('content_items_content_hash_idx').on(t.contentHash),
+    contentHashIdx: index('pages_content_hash_idx').on(t.contentHash),
+    orgIdx: index('pages_org_idx').on(t.orgId),
   }),
 )
 
-export const generations = pgTable(
-  'generations',
+export const transforms = pgTable(
+  'transforms',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    tenantId: uuid('tenant_id')
+    orgId: varchar('org_id', { length: 128 }).notNull(),
+    pageId: uuid('page_id')
       .notNull()
-      .references(() => tenants.id, { onDelete: 'cascade' }),
-    contentItemId: uuid('content_item_id')
-      .notNull()
-      .references(() => contentItems.id, { onDelete: 'cascade' }),
+      .references(() => pages.id, { onDelete: 'cascade' }),
     inputHash: varchar('input_hash', { length: 128 }).notNull(),
     idempotencyKey: varchar('idempotency_key', { length: 128 }),
-    model: varchar('model', { length: 128 }).notNull(),
-    status: generationStatus('status').notNull().default('queued'),
+    engine: varchar('engine', { length: 128 }),
+    status: transformStatus('status').notNull().default('queued'),
     error: text('error'),
     createdAt: timestamp('created_at', { withTimezone: true })
       .defaultNow()
@@ -135,12 +117,12 @@ export const generations = pgTable(
     completedAt: timestamp('completed_at', { withTimezone: true }),
   },
   (t) => ({
-    idempotentUnique: uniqueIndex('generations_content_input_unique').on(
-      t.contentItemId,
+    idempotentUnique: uniqueIndex('transforms_page_input_unique').on(
+      t.pageId,
       t.inputHash,
     ),
-    tenantCreatedIdx: index('generations_tenant_created_idx').on(
-      t.tenantId,
+    orgCreatedIdx: index('transforms_org_created_idx').on(
+      t.orgId,
       t.createdAt,
     ),
   }),
@@ -150,9 +132,9 @@ export const outputs = pgTable(
   'outputs',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    generationId: uuid('generation_id')
+    transformId: uuid('transform_id')
       .notNull()
-      .references(() => generations.id, { onDelete: 'cascade' }),
+      .references(() => transforms.id, { onDelete: 'cascade' }),
     kind: outputKind('kind').notNull(),
     body: jsonb('body').notNull(),
     confidence: varchar('confidence', { length: 16 }),
@@ -161,22 +143,40 @@ export const outputs = pgTable(
       .notNull(),
   },
   (t) => ({
-    generationKindUnique: uniqueIndex('outputs_generation_kind_unique').on(
-      t.generationId,
+    transformKindUnique: uniqueIndex('outputs_transform_kind_unique').on(
+      t.transformId,
       t.kind,
     ),
   }),
 )
 
+export const changes = pgTable(
+  'changes',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    transformId: uuid('transform_id')
+      .notNull()
+      .references(() => transforms.id, { onDelete: 'cascade' }),
+    fromTag: varchar('from_tag', { length: 32 }).notNull(),
+    toTag: varchar('to_tag', { length: 32 }).notNull(),
+    reason: text('reason'),
+    confidence: varchar('confidence', { length: 16 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (t) => ({
+    transformIdx: index('changes_transform_idx').on(t.transformId),
+  }),
+)
+
 export const usageLogs = pgTable('usage_logs', {
   id: uuid('id').defaultRandom().primaryKey(),
-  tenantId: uuid('tenant_id')
-    .notNull()
-    .references(() => tenants.id, { onDelete: 'cascade' }),
-  contentItemId: uuid('content_item_id').references(() => contentItems.id, {
+  orgId: varchar('org_id', { length: 128 }).notNull(),
+  pageId: uuid('page_id').references(() => pages.id, {
     onDelete: 'set null',
   }),
-  generationId: uuid('generation_id').references(() => generations.id, {
+  transformId: uuid('transform_id').references(() => transforms.id, {
     onDelete: 'set null',
   }),
   event: usageEvent('event').notNull(),

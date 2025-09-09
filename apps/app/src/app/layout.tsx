@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s - Accessaurus',
     default: 'Accessaurus Dashboard',
   },
-  description: 'Generate SEO meta tags, Schema.org JSON-LD, and WCAG compliant content automatically',
+  description: 'Upgrade markup into semantic, accessible HTML with conservative heuristics and optional AI assistance',
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

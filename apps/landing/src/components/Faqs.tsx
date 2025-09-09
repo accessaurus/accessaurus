@@ -13,7 +13,7 @@ const faqs = [
     {
       question: 'Does it change my content?',
       answer:
-        'We add structured metadata and JSON‑LD and suggest semantic improvements. Your visual content remains yours.',
+        'We upgrade your markup to semantic HTML (landmarks, headings, figures) while preserving your visual design. Your content remains yours.',
     },
     {
       question: 'Can we use it in regulated environments?',
@@ -25,12 +25,12 @@ const faqs = [
     {
       question: 'How does this help screen reader users?',
       answer:
-        'We generate clear titles and descriptions that make sense when read aloud and enforce a logical reading order.',
+        'We improve landmark coverage and heading structure so screen readers navigate pages logically and consistently.',
     },
     {
       question: 'How does it help AI assistants?',
       answer:
-        'We add Schema.org JSON‑LD and semantic markers so assistants can better understand and explain your content.',
+        'We add semantic markers so assistants and crawlers can better understand and explain your content.',
     },
     {
       question: 'How much does Accessaurus cost?',
