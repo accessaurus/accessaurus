@@ -7,6 +7,7 @@ import { requireDb, schema, PageRowZ, TransformZ } from '@/db'
 import { and, desc, eq, gt, inArray } from 'drizzle-orm'
 import { auth } from '@clerk/nextjs/server'
 import { Sparkline } from '@/components/sparkline'
+import Link from 'next/link'
 
 type SearchParams = Record<string, string | string[] | undefined>
 
@@ -155,21 +156,21 @@ export default async function Home({ searchParams }: { searchParams: Promise<Sea
         <Subheading>Overview</Subheading>
         <div>
           <div className="flex items-center gap-2 text-sm">
-            <a href="/?period=last_week" className={periodKey === 'last_week' ? 'font-medium' : 'text-zinc-500'}>
+            <Link href="/?period=last_week" className={periodKey === 'last_week' ? 'font-medium' : 'text-zinc-500'}>
               Last week
-            </a>
+            </Link>
             <span className="text-zinc-300">·</span>
-            <a href="/?period=last_two" className={periodKey === 'last_two' ? 'font-medium' : 'text-zinc-500'}>
+            <Link href="/?period=last_two" className={periodKey === 'last_two' ? 'font-medium' : 'text-zinc-500'}>
               Last two weeks
-            </a>
+            </Link>
             <span className="text-zinc-300">·</span>
-            <a href="/?period=last_month" className={periodKey === 'last_month' ? 'font-medium' : 'text-zinc-500'}>
+            <Link href="/?period=last_month" className={periodKey === 'last_month' ? 'font-medium' : 'text-zinc-500'}>
               Last month
-            </a>
+            </Link>
             <span className="text-zinc-300">·</span>
-            <a href="/?period=last_quarter" className={periodKey === 'last_quarter' ? 'font-medium' : 'text-zinc-500'}>
+            <Link href="/?period=last_quarter" className={periodKey === 'last_quarter' ? 'font-medium' : 'text-zinc-500'}>
               Last quarter
-            </a>
+            </Link>
           </div>
         </div>
       </div>

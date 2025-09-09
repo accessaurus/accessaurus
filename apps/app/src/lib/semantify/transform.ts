@@ -148,7 +148,7 @@ export async function semantifyHtml(html: string, options: SemantifyOptions = {}
 
   // Second pass: figure/figcaption detection
   if (enableFigureDetection) {
-    visit(tree, 'element', (node: any, _index: number, parent: any) => {
+    visit(tree, 'element', (node: any, _index: number | undefined, parent: any) => {
       if (!parent || node.tagName !== 'div') return
       const props = node.properties || {}
       const classes = ensureArray(props.className).map((c) => c.toLowerCase())
@@ -183,4 +183,3 @@ export async function semantifyHtml(html: string, options: SemantifyOptions = {}
 }
 
 export default semantifyHtml
-
