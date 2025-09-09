@@ -24,7 +24,7 @@ tasks:
       - 'install'
     inputs:
       - 'package.json'
-      - 'bun.lockb'
+      - 'bun.lock'
     outputs:
       - 'node_modules'
     options:
