@@ -58,7 +58,7 @@
           var latest=origin+"/api/sdk/latest?orgId="+encodeURIComponent(orgId)+"&pageUrl="+encodeURIComponent(location.href)+"&hash="+encodeURIComponent(hash);
           fetch(latest,{method:'GET',credentials:'omit',mode:'cors'}).then(function(r){return r.ok?r.json():Promise.reject()}).then(function(body){
             var html=(body&&body.html)||''; if(!html) return;
-            var doc=new DOMParser().parseFromString(html,'text/html'); if(doc&&doc.body){ document.body.innerHTML=doc.body.innerHTML }
+            var doc=new DOMParser().parseFromString(html,'text/html'); if(doc&&doc.body){ var preserve=[].slice.call(document.body.querySelectorAll('style,link[rel="stylesheet"]')).map(function(n){return n.cloneNode(true)}); document.body.innerHTML=doc.body.innerHTML; preserve.forEach(function(n){ document.body.appendChild(n) }); }
           })
         }catch(e){}
       }

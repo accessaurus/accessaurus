@@ -22,7 +22,10 @@ export function Accessaurus(props: AccessaurusProps) {
             if (!html) return
             const doc = new DOMParser().parseFromString(html, 'text/html')
             if (doc && doc.body) {
-              document.body.innerHTML = doc.body.innerHTML
+            // Preserve any runtime styles injected in body
+            const preserve = Array.from(document.body.querySelectorAll('style,link[rel="stylesheet"]')).map((n) => n.cloneNode(true) as Element)
+            document.body.innerHTML = doc.body.innerHTML
+            preserve.forEach((n) => document.body.appendChild(n))
             }
           })
           .catch(() => {})
