@@ -4,14 +4,8 @@
   "private": true,
   "packageManager": "bun@1.2.21",
   "scripts": {
-    "dev": "next dev -p 3200",
-    "build": "next build",
-    "start": "next start -p 3200"
+    "dev": "bun run server.ts",
+    "start": "bun run server.ts"
   },
-  "dependencies": {
-    "next": "^15",
-    "react": "^19",
-    "react-dom": "^19"
-  }
+  "dependencies": {}
 }
-

@@ -105,6 +105,14 @@ export default async function SitePage({ params }: { params: Promise<{ id: strin
               </svg>
               Visit Site
             </Button>
+            <form method="post" action={`/site/${page.id}/delete`}>
+              <Button outline type="submit" className="inline-flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7m3 0V5a2 2 0 012-2h4a2 2 0 012 2v2m-6 4v6m4-6v6M4 7h16" />
+                </svg>
+                Delete Site
+              </Button>
+            </form>
           </div>
         </div>
 

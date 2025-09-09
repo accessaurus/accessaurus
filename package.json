@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/bun": "^1.2.21",
     "@types/diff": "^8.0.0"
   },
   "engines": {
