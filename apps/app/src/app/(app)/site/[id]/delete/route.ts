@@ -3,13 +3,13 @@ import { requireDb, schema } from '@/db'
 import { auth } from '@clerk/nextjs/server'
 import { and, eq } from 'drizzle-orm'
 
-export async function POST(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { orgId } = await auth()
   if (!orgId) {
     return new Response('Unauthorized', { status: 401 })
   }
 
-  const id = params.id
+  const { id } = await params
   const db = requireDb()
 
   const deleted = await db
@@ -27,8 +27,7 @@ export async function POST(_req: NextRequest, { params }: { params: { id: string
   })
 }
 
-export async function DELETE(req: NextRequest, ctx: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
   // Support DELETE method alongside POST for API completeness
   return POST(req, ctx)
 }
-
