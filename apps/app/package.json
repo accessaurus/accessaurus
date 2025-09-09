@@ -5,7 +5,7 @@
   "packageManager": "bun@1.2.21",
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "bun db:migrate && next build",
+    "build": "next build",
     "start": "next start -p 3000",
     "lint": "next lint",
     "db:up": "docker start accessaurus-postgres 2>/dev/null || docker run --name accessaurus-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=accessaurus -p 5432:5432 -v accessaurus_pg:/var/lib/postgresql/data -d postgres:16-alpine",
